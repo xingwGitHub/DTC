@@ -10,22 +10,10 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
-    - name: Build Docker
-      uses: actions/docker/cli@master
-      with:
-        args: build -t npm .
     - name: Build
       uses: actions/npm@master
       with:
         args: install
-    - name: Test
-      uses: actions/npm@master
-      with:
-        args: test
-    - name: Publish Filter
-      uses: actions/bin/filter@master
-      with:
-        args: branch master
     - name: Publish
       uses: mikeal/merge-release@master
       env:

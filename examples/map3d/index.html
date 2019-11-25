@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    #map1 {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      background: #355;
+    }
+
+  </style>
+  <title>3D-Map</title>
+</head>
+
+<body>
+  <div id='map1'></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../../dist/dtc.umd.min.js"></script>
+<script>
+  window.onload = function () {
+    var url = 'https://zhu18.github.io/visualcontrols/static/mapdata/world.json'
+    $.get(url, (geoData) => {
+      //地图创建
+      var map = new dtc.vis.Map3D({
+        el: $('#map1')[0],
+        geoData,
+        area: {
+          color: 0x244b44, //0x99ee33,
+          lineColor: 0x629d91,
+          hoverColor: 0x33ff99,
+          hasHoverHeight: true,
+          loadEffect: true,
+          data: [{
+            name: 'China',
+            color: '#73a090',
+            value: 15
+          }]
+        }
+      })
+      //视角
+      map.setCameraPosition({
+        x: 0,
+        y: -200,
+        z: 0
+      });
+      map.setCameraPosition({
+        x: 0,
+        y: 0,
+        z: 150
+      }, 1000, 500)
+    })
+  }
+
+</script>
+
+</html>

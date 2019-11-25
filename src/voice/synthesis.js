@@ -22,17 +22,22 @@ function isSupport() {
 
 function Synthesis(option = {}) {
   if (!Synthesis.single_instance) {
-    Synthesis.single_instance = this;
+    Synthesis.single_instance = this
   }
-  option = Object.assign({
-    lang: 'zh-CN',
-    volume: 1,
-    rate: 0.8,
-    pitch: 1
-  }, option)
+  option = Object.assign(
+    {
+      lang: 'zh-CN',
+      volume: 1,
+      rate: 0.8,
+      pitch: 1
+    },
+    option
+  )
   // 检测支持情况
   if (!isSupport()) {
-    console.log('your browser do net support the API, visit https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance get more infomation')
+    console.log(
+      'your browser do net support the API, visit https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance get more infomation'
+    )
     return null
   }
   const synth = window.speechSynthesis
@@ -44,31 +49,31 @@ function Synthesis(option = {}) {
   })
   // 获取配置项目
 
-  this.speak = function (txt) {
+  this.speak = function(txt) {
     if (!txt) return
     utterance.text = txt
-    synth.speak(utterance);
+    synth.speak(utterance)
   }
-  this.cancel = function () {
-    synth.cancel();
+  this.cancel = function() {
+    synth.cancel()
   }
-  this.setOption = function (opt = {}) {
+  this.setOption = function(opt = {}) {
     Object.assign(option, opt)
     const keys = Object.keys(option)
     keys.forEach(key => {
       utterance[key] = option[key]
     })
   }
-  this.addEventListener = function (type, callback) {
+  this.addEventListener = function(type, callback) {
     utterance.addEventListener(type, callback)
   }
   this.getOption = function() {
-    const {lang, volume, rate, pitch} = utterance
-    return {lang, volume, rate, pitch}
+    const { lang, volume, rate, pitch } = utterance
+    return { lang, volume, rate, pitch }
   }
-  this.getStatus = function () {
-    const { paused,pending,speaking } = synth
-    return { paused,pending,speaking }
+  this.getStatus = function() {
+    const { paused, pending, speaking } = synth
+    return { paused, pending, speaking }
   }
   return Synthesis.single_instance
 }

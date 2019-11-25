@@ -1,6 +1,6 @@
 
 /**
-  * dtc V1.0.7
+  * dtc V1.0.9
   * (c) 2018-2019
   * Copyright all contributors
   * @license Released under MIT license.
@@ -132,10 +132,10 @@
 
   var annyang = createCommonjsModule(function (module) {
 
-    var _typeof$$1 = "function" == typeof Symbol && "symbol" == _typeof(Symbol.iterator) ? function (e) {
+    var _typeof$$1 = 'function' == typeof Symbol && 'symbol' == _typeof(Symbol.iterator) ? function (e) {
       return _typeof(e);
     } : function (e) {
-      return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : _typeof(e);
+      return e && 'function' == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? 'symbol' : _typeof(e);
     }; //! annyang
     //! version : 2.6.1
     //! author  : Tal Ater @TalAter
@@ -149,8 +149,8 @@
 
 
     !function (e, n) {
-      "object" === (_typeof$$1(module)) && module.exports ? module.exports = n(e) : e.annyang = n(e);
-    }("undefined" != typeof window ? window : void 0, function (r, i) {
+      'object' === (_typeof$$1(module)) && module.exports ? module.exports = n(e) : e.annyang = n(e);
+    }('undefined' != typeof window ? window : void 0, function (r, i) {
       var t,
           o = r.SpeechRecognition || r.webkitSpeechRecognition || r.mozSpeechRecognition || r.msSpeechRecognition || r.oSpeechRecognition;
       if (!o) return null;
@@ -173,7 +173,7 @@
           f = 0,
           l = 0,
           d = !1,
-          p = "font-weight: bold; color: #00f;",
+          p = 'font-weight: bold; color: #00f;',
           g = !1,
           m = !1,
           h = /\s*\((.*?)\)\s*/g,
@@ -194,7 +194,7 @@
         return a !== i;
       },
           k = function k(e, n) {
-        -1 !== e.indexOf("%c") || n ? console.log(e, n || p) : console.log(e);
+        -1 !== e.indexOf('%c') || n ? console.log(e, n || p) : console.log(e);
       },
           x = function x() {
         e() || t.init({}, !1);
@@ -204,14 +204,14 @@
           command: e,
           callback: n,
           originalPhrase: t
-        }), d && k("Command successfully loaded: %c" + t, p);
+        }), d && k('Command successfully loaded: %c' + t, p);
       },
           P = function P(e) {
         var n;
         S(u.result, e);
 
         for (var t = 0; t < e.length; t++) {
-          n = e[t].trim(), d && k("Speech recognized: %c" + n, p);
+          n = e[t].trim(), d && k('Speech recognized: %c' + n, p);
 
           for (var o = 0, r = s.length; o < r; o++) {
             var i = s[o],
@@ -219,7 +219,7 @@
 
             if (a) {
               var c = a.slice(1);
-              return d && (k("command matched: %c" + i.originalPhrase, p), c.length && k("with parameters", c)), i.callback.apply(this, c), void S(u.resultMatch, n, i.originalPhrase, e);
+              return d && (k('command matched: %c' + i.originalPhrase, p), c.length && k('with parameters', c)), i.callback.apply(this, c), void S(u.resultMatch, n, i.originalPhrase, e);
             }
           }
         }
@@ -230,24 +230,24 @@
       return t = {
         init: function init(e) {
           var n = !(1 < arguments.length && arguments[1] !== i) || arguments[1];
-          a && a.abort && a.abort(), (a = new o()).maxAlternatives = 5, a.continuous = "http:" === r.location.protocol, a.lang = "en-US", a.onstart = function () {
+          a && a.abort && a.abort(), (a = new o()).maxAlternatives = 5, a.continuous = 'http:' === r.location.protocol, a.lang = 'en-US', a.onstart = function () {
             m = !0, S(u.start);
           }, a.onsoundstart = function () {
             S(u.soundstart);
           }, a.onerror = function (e) {
             switch (S(u.error, e), e.error) {
-              case "network":
+              case 'network':
                 S(u.errorNetwork, e);
                 break;
 
-              case "not-allowed":
-              case "service-not-allowed":
+              case 'not-allowed':
+              case 'service-not-allowed':
                 c = !1, new Date().getTime() - f < 200 ? S(u.errorPermissionBlocked, e) : S(u.errorPermissionDenied, e);
             }
           }, a.onend = function () {
             if (m = !1, S(u.end), c) {
               var e = new Date().getTime() - f;
-              (l += 1) % 10 == 0 && d && k("Speech Recognition is repeatedly stopping and starting. See http://is.gd/annyang_restarts for tips."), e < 1e3 ? setTimeout(function () {
+              (l += 1) % 10 == 0 && d && k('Speech Recognition is repeatedly stopping and starting. See http://is.gd/annyang_restarts for tips.'), e < 1e3 ? setTimeout(function () {
                 t.start({
                   paused: g
                 });
@@ -256,7 +256,7 @@
               });
             }
           }, a.onresult = function (e) {
-            if (g) return d && k("Speech heard, but annyang is paused"), !1;
+            if (g) return d && k('Speech heard, but annyang is paused'), !1;
 
             for (var n = e.results[e.resultIndex], t = [], o = 0; o < n.length; o++) {
               t[o] = n[o].transcript;
@@ -294,15 +294,15 @@
           var n, t;
 
           for (var o in x(), e) {
-            if (e.hasOwnProperty(o)) if ("function" == typeof (n = r[e[o]] || e[o])) R((t = (t = o).replace(w, "\\$&").replace(h, "(?:$1)?").replace(b, function (e, n) {
-              return n ? e : "([^\\s]+)";
-            }).replace(v, "(.*?)").replace(y, "\\s*$1?\\s*"), new RegExp("^" + t + "$", "i")), n, o);else {
-              if (!("object" === (void 0 === n ? "undefined" : _typeof$$1(n)) && n.regexp instanceof RegExp)) {
-                d && k("Can not register command: %c" + o, p);
+            if (e.hasOwnProperty(o)) if ('function' == typeof (n = r[e[o]] || e[o])) R((t = (t = o).replace(w, '\\$&').replace(h, '(?:$1)?').replace(b, function (e, n) {
+              return n ? e : '([^\\s]+)';
+            }).replace(v, '(.*?)').replace(y, '\\s*$1?\\s*'), new RegExp('^' + t + '$', 'i')), n, o);else {
+              if (!('object' === (void 0 === n ? 'undefined' : _typeof$$1(n)) && n.regexp instanceof RegExp)) {
+                d && k('Can not register command: %c' + o, p);
                 continue;
               }
 
-              R(new RegExp(n.regexp.source, "i"), n.callback, o);
+              R(new RegExp(n.regexp.source, 'i'), n.callback, o);
             }
           }
         },
@@ -317,7 +317,7 @@
         },
         addCallback: function addCallback(e, n, t) {
           var o = r[n] || n;
-          "function" == typeof o && u[e] !== i && u[e].push({
+          'function' == typeof o && u[e] !== i && u[e].push({
             callback: o,
             context: t || this
           });
@@ -338,7 +338,7 @@
           return a;
         },
         trigger: function trigger(e) {
-          t.isListening() ? (Array.isArray(e) || (e = [e]), P(e)) : d && k(m ? "Speech heard, but annyang is paused" : "Cannot trigger while annyang is aborted");
+          t.isListening() ? (Array.isArray(e) || (e = [e]), P(e)) : d && k(m ? 'Speech heard, but annyang is paused' : 'Cannot trigger while annyang is aborted');
         }
       };
     });

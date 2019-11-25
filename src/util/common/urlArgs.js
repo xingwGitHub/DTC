@@ -8,20 +8,20 @@
  */
 
 function urlArgs() {
-  let args = {};
-  let query = window.location.search.substring(1);
-  let pairs = query.split('&');
+  let args = {}
+  let query = window.location.search.substring(1)
+  let pairs = query.split('&')
   for (let i = 0; i < pairs.length; i++) {
-    let pos = pairs[i].indexOf('=');
+    let pos = pairs[i].indexOf('=')
     if (pos === -1) {
-      continue;
+      continue
     }
-    let name = pairs[i].substring(0, pos);
-    let value = pairs[i].substring(pos + 1);
-    value = decodeURIComponent(value);
-    args[name] = value;
+    let name = pairs[i].substring(0, pos)
+    let value = pairs[i].substring(pos + 1)
+    value = decodeURIComponent(value)
+    args[name] = value
   }
-  return args;
+  return args
 }
 
 export default urlArgs

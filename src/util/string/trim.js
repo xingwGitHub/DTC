@@ -4,7 +4,7 @@
  * @param {string} place 字符串trim选项 可选值 'left','right','all'
  */
 function trim(str, place = 'all') {
-  str = (str + '')
+  str = str + ''
   let regl = /^\s*/g,
     regr = /\s*$/g,
     rega = /(^\s*)|(\s*$)/g,
@@ -19,7 +19,7 @@ function trim(str, place = 'all') {
     default:
       reg = rega
   }
-  return str.replace(reg, "");
+  return str.replace(reg, '')
 }
 /**
  * 删除字符串两侧的空白

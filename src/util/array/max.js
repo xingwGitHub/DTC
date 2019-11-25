@@ -8,17 +8,17 @@
  */
 
 /** `Object#toString` result references. */
-var symbolTag = '[object Symbol]';
+var symbolTag = '[object Symbol]'
 
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+var objectProto = Object.prototype
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var objectToString = objectProto.toString;
+var objectToString = objectProto.toString
 
 /**
  * The base implementation of methods like `_.max` and `_.min` which accepts a
@@ -32,21 +32,23 @@ var objectToString = objectProto.toString;
  */
 function baseExtremum(array, iteratee, comparator) {
   var index = -1,
-      length = array.length;
+    length = array.length
 
   while (++index < length) {
     var value = array[index],
-        current = iteratee(value);
+      current = iteratee(value)
 
-    if (current != null && (computed === undefined
-          ? (current === current && !isSymbol(current))
-          : comparator(current, computed)
-        )) {
+    if (
+      current != null &&
+      (computed === undefined
+        ? current === current && !isSymbol(current)
+        : comparator(current, computed))
+    ) {
       var computed = current,
-          result = value;
+        result = value
     }
   }
-  return result;
+  return result
 }
 
 /**
@@ -59,7 +61,7 @@ function baseExtremum(array, iteratee, comparator) {
  *  else `false`.
  */
 function baseGt(value, other) {
-  return value > other;
+  return value > other
 }
 
 /**
@@ -87,7 +89,7 @@ function baseGt(value, other) {
  * // => false
  */
 function isObjectLike(value) {
-  return !!value && typeof value == 'object';
+  return !!value && typeof value == 'object'
 }
 
 /**
@@ -108,8 +110,10 @@ function isObjectLike(value) {
  * // => false
  */
 function isSymbol(value) {
-  return typeof value == 'symbol' ||
-    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+  return (
+    typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag)
+  )
 }
 
 /**
@@ -129,7 +133,7 @@ function isSymbol(value) {
  * // => true
  */
 function identity(value) {
-  return value;
+  return value
 }
 
 /**
@@ -151,9 +155,9 @@ function identity(value) {
  * // => undefined
  */
 function max(array) {
-  return (array && array.length)
+  return array && array.length
     ? baseExtremum(array, identity, baseGt)
-    : undefined;
+    : undefined
 }
 
-export default max;
+export default max

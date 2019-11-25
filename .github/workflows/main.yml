@@ -19,3 +19,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.dtc_ci }}
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+    - name: Deploy document
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.dtc_ci }}
+        BRANCH: gh-pages
+        FOLDER: docs/.vuepress/dist
+        BUILD_SCRIPT: npm run builddoc

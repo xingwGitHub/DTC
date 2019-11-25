@@ -21,6 +21,6 @@
  * _.isArray(_.noop);
  * // => false
  */
-var isArray = Array.isArray;
+var isArray = Array.isArray
 
-export default isArray;
+export default isArray

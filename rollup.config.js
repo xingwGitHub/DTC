@@ -1,3 +1,4 @@
+/* eslint-disable */
 const rollup = require('rollup');
 const resolve = require('rollup-plugin-node-resolve'); // 解析node_modules第三方以来关系
 const commonjs = require('rollup-plugin-commonjs'); // 处理非ES6的模块，如CommonJS的模块

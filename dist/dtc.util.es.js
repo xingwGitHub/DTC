@@ -1,6 +1,6 @@
 
 /**
-  * dtc V1.0.7
+  * dtc V1.0.9
   * (c) 2018-2019
   * Copyright all contributors
   * @license Released under MIT license.
@@ -448,71 +448,71 @@ function Browser() {
 
   var match = {
     //内核
-    'Trident': u.indexOf('Trident') > -1 || u.indexOf('NET CLR') > -1,
-    'Presto': u.indexOf('Presto') > -1,
-    'WebKit': u.indexOf('AppleWebKit') > -1,
-    'Gecko': u.indexOf('Gecko/') > -1,
+    Trident: u.indexOf('Trident') > -1 || u.indexOf('NET CLR') > -1,
+    Presto: u.indexOf('Presto') > -1,
+    WebKit: u.indexOf('AppleWebKit') > -1,
+    Gecko: u.indexOf('Gecko/') > -1,
     //浏览器
-    'Safari': u.indexOf('Safari') > -1,
-    'Chrome': u.indexOf('Chrome') > -1 || u.indexOf('CriOS') > -1,
-    'IE': u.indexOf('MSIE') > -1 || u.indexOf('Trident') > -1,
-    'Edge': u.indexOf('Edge') > -1,
-    'Firefox': u.indexOf('Firefox') > -1 || u.indexOf('FxiOS') > -1,
+    Safari: u.indexOf('Safari') > -1,
+    Chrome: u.indexOf('Chrome') > -1 || u.indexOf('CriOS') > -1,
+    IE: u.indexOf('MSIE') > -1 || u.indexOf('Trident') > -1,
+    Edge: u.indexOf('Edge') > -1,
+    Firefox: u.indexOf('Firefox') > -1 || u.indexOf('FxiOS') > -1,
     'Firefox Focus': u.indexOf('Focus') > -1,
-    'Chromium': u.indexOf('Chromium') > -1,
-    'Opera': u.indexOf('Opera') > -1 || u.indexOf('OPR') > -1,
-    'Vivaldi': u.indexOf('Vivaldi') > -1,
-    'Yandex': u.indexOf('YaBrowser') > -1,
-    'Arora': u.indexOf('Arora') > -1,
-    'Lunascape': u.indexOf('Lunascape') > -1,
-    'QupZilla': u.indexOf('QupZilla') > -1,
+    Chromium: u.indexOf('Chromium') > -1,
+    Opera: u.indexOf('Opera') > -1 || u.indexOf('OPR') > -1,
+    Vivaldi: u.indexOf('Vivaldi') > -1,
+    Yandex: u.indexOf('YaBrowser') > -1,
+    Arora: u.indexOf('Arora') > -1,
+    Lunascape: u.indexOf('Lunascape') > -1,
+    QupZilla: u.indexOf('QupZilla') > -1,
     'Coc Coc': u.indexOf('coc_coc_browser') > -1,
-    'Kindle': u.indexOf('Kindle') > -1 || u.indexOf('Silk/') > -1,
-    'Iceweasel': u.indexOf('Iceweasel') > -1,
-    'Konqueror': u.indexOf('Konqueror') > -1,
-    'Iceape': u.indexOf('Iceape') > -1,
-    'SeaMonkey': u.indexOf('SeaMonkey') > -1,
-    'Epiphany': u.indexOf('Epiphany') > -1,
+    Kindle: u.indexOf('Kindle') > -1 || u.indexOf('Silk/') > -1,
+    Iceweasel: u.indexOf('Iceweasel') > -1,
+    Konqueror: u.indexOf('Konqueror') > -1,
+    Iceape: u.indexOf('Iceape') > -1,
+    SeaMonkey: u.indexOf('SeaMonkey') > -1,
+    Epiphany: u.indexOf('Epiphany') > -1,
     '360': u.indexOf('QihooBrowser') > -1,
     '360EE': u.indexOf('360EE') > -1,
     '360SE': u.indexOf('360SE') > -1,
-    'UC': u.indexOf('UC') > -1 || u.indexOf(' UBrowser') > -1,
-    'QQBrowser': u.indexOf('QQBrowser') > -1,
-    'QQ': u.indexOf('QQ/') > -1,
-    'Baidu': u.indexOf('Baidu') > -1 || u.indexOf('BIDUBrowser') > -1,
-    'Maxthon': u.indexOf('Maxthon') > -1,
-    'Sogou': u.indexOf('MetaSr') > -1 || u.indexOf('Sogou') > -1,
-    'LBBROWSER': u.indexOf('LBBROWSER') > -1,
+    UC: u.indexOf('UC') > -1 || u.indexOf(' UBrowser') > -1,
+    QQBrowser: u.indexOf('QQBrowser') > -1,
+    QQ: u.indexOf('QQ/') > -1,
+    Baidu: u.indexOf('Baidu') > -1 || u.indexOf('BIDUBrowser') > -1,
+    Maxthon: u.indexOf('Maxthon') > -1,
+    Sogou: u.indexOf('MetaSr') > -1 || u.indexOf('Sogou') > -1,
+    LBBROWSER: u.indexOf('LBBROWSER') > -1,
     '2345Explorer': u.indexOf('2345Explorer') > -1,
-    'TheWorld': u.indexOf('TheWorld') > -1,
-    'XiaoMi': u.indexOf('MiuiBrowser') > -1,
-    'Quark': u.indexOf('Quark') > -1,
-    'Qiyu': u.indexOf('Qiyu') > -1,
-    'Wechat': u.indexOf('MicroMessenger') > -1,
-    'Taobao': u.indexOf('AliApp(TB') > -1,
-    'Alipay': u.indexOf('AliApp(AP') > -1,
-    'Weibo': u.indexOf('Weibo') > -1,
-    'Douban': u.indexOf('com.douban.frodo') > -1,
-    'Suning': u.indexOf('SNEBUY-APP') > -1,
-    'iQiYi': u.indexOf('IqiyiApp') > -1,
+    TheWorld: u.indexOf('TheWorld') > -1,
+    XiaoMi: u.indexOf('MiuiBrowser') > -1,
+    Quark: u.indexOf('Quark') > -1,
+    Qiyu: u.indexOf('Qiyu') > -1,
+    Wechat: u.indexOf('MicroMessenger') > -1,
+    Taobao: u.indexOf('AliApp(TB') > -1,
+    Alipay: u.indexOf('AliApp(AP') > -1,
+    Weibo: u.indexOf('Weibo') > -1,
+    Douban: u.indexOf('com.douban.frodo') > -1,
+    Suning: u.indexOf('SNEBUY-APP') > -1,
+    iQiYi: u.indexOf('IqiyiApp') > -1,
     //系统或平台
-    'Windows': u.indexOf('Windows') > -1,
-    'Linux': u.indexOf('Linux') > -1 || u.indexOf('X11') > -1,
+    Windows: u.indexOf('Windows') > -1,
+    Linux: u.indexOf('Linux') > -1 || u.indexOf('X11') > -1,
     'Mac OS': u.indexOf('Macintosh') > -1,
-    'Android': u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
-    'Ubuntu': u.indexOf('Ubuntu') > -1,
-    'FreeBSD': u.indexOf('FreeBSD') > -1,
-    'Debian': u.indexOf('Debian') > -1,
+    Android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
+    Ubuntu: u.indexOf('Ubuntu') > -1,
+    FreeBSD: u.indexOf('FreeBSD') > -1,
+    Debian: u.indexOf('Debian') > -1,
     'Windows Phone': u.indexOf('IEMobile') > -1 || u.indexOf('Windows Phone') > -1,
-    'BlackBerry': u.indexOf('BlackBerry') > -1 || u.indexOf('RIM') > -1,
-    'MeeGo': u.indexOf('MeeGo') > -1,
-    'Symbian': u.indexOf('Symbian') > -1,
-    'iOS': u.indexOf('like Mac OS X') > -1,
+    BlackBerry: u.indexOf('BlackBerry') > -1 || u.indexOf('RIM') > -1,
+    MeeGo: u.indexOf('MeeGo') > -1,
+    Symbian: u.indexOf('Symbian') > -1,
+    iOS: u.indexOf('like Mac OS X') > -1,
     'Chrome OS': u.indexOf('CrOS') > -1,
-    'WebOS': u.indexOf('hpwOS') > -1,
+    WebOS: u.indexOf('hpwOS') > -1,
     //设备
-    'Mobile': u.indexOf('Mobi') > -1 || u.indexOf('iPh') > -1 || u.indexOf('480') > -1,
-    'Tablet': u.indexOf('Tablet') > -1 || u.indexOf('Pad') > -1 || u.indexOf('Nexus 7') > -1
+    Mobile: u.indexOf('Mobi') > -1 || u.indexOf('iPh') > -1 || u.indexOf('480') > -1,
+    Tablet: u.indexOf('Tablet') > -1 || u.indexOf('Pad') > -1 || u.indexOf('Nexus 7') > -1
   };
   var is360 = false;
 
@@ -522,7 +522,7 @@ function Browser() {
     if (chrome_vision > 36 && _window.showModalDialog) {
       is360 = true;
     } else if (chrome_vision > 45) {
-      is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
+      is360 = _mime('type', 'application/vnd.chromium.remoting-viewer');
     }
   } //修正
 
@@ -530,7 +530,7 @@ function Browser() {
   if (match['Mobile']) {
     match['Mobile'] = !(u.indexOf('iPad') > -1);
   } else if (is360) {
-    if (_mime("type", "application/gameplugin")) {
+    if (_mime('type', 'application/gameplugin')) {
       match['360SE'] = true;
     } else {
       match['360EE'] = true;
@@ -601,7 +601,7 @@ function Browser() {
 
 
   var osVersion = {
-    'Windows': function Windows() {
+    Windows: function Windows() {
       var v = u.replace(/^.*Windows NT ([\d.]+);.*$/, '$1');
       var hash = {
         '6.4': '10',
@@ -615,13 +615,13 @@ function Browser() {
       };
       return hash[v] || v;
     },
-    'Android': function Android() {
+    Android: function Android() {
       return u.replace(/^.*Android ([\d.]+);.*$/, '$1');
     },
-    'iOS': function iOS() {
+    iOS: function iOS() {
       return u.replace(/^.*OS ([\d_]+) like.*$/, '$1').replace(/_/g, '.');
     },
-    'Debian': function Debian() {
+    Debian: function Debian() {
       return u.replace(/^.*Debian\/([\d.]+).*$/, '$1');
     },
     'Windows Phone': function WindowsPhone() {
@@ -630,7 +630,7 @@ function Browser() {
     'Mac OS': function MacOS() {
       return u.replace(/^.*Mac OS X ([\d_]+).*$/, '$1').replace(/_/g, '.');
     },
-    'WebOS': function WebOS() {
+    WebOS: function WebOS() {
       return u.replace(/^.*hpwOS\/([\d.]+);.*$/, '$1');
     }
   };
@@ -646,64 +646,64 @@ function Browser() {
 
 
   var version = {
-    'Safari': function Safari() {
+    Safari: function Safari() {
       return u.replace(/^.*Version\/([\d.]+).*$/, '$1');
     },
-    'Chrome': function Chrome() {
+    Chrome: function Chrome() {
       return u.replace(/^.*Chrome\/([\d.]+).*$/, '$1').replace(/^.*CriOS\/([\d.]+).*$/, '$1');
     },
-    'IE': function IE() {
+    IE: function IE() {
       return u.replace(/^.*MSIE ([\d.]+).*$/, '$1').replace(/^.*rv:([\d.]+).*$/, '$1');
     },
-    'Edge': function Edge() {
+    Edge: function Edge() {
       return u.replace(/^.*Edge\/([\d.]+).*$/, '$1');
     },
-    'Firefox': function Firefox() {
+    Firefox: function Firefox() {
       return u.replace(/^.*Firefox\/([\d.]+).*$/, '$1').replace(/^.*FxiOS\/([\d.]+).*$/, '$1');
     },
     'Firefox Focus': function FirefoxFocus() {
       return u.replace(/^.*Focus\/([\d.]+).*$/, '$1');
     },
-    'Chromium': function Chromium() {
+    Chromium: function Chromium() {
       return u.replace(/^.*Chromium\/([\d.]+).*$/, '$1');
     },
-    'Opera': function Opera() {
+    Opera: function Opera() {
       return u.replace(/^.*Opera\/([\d.]+).*$/, '$1').replace(/^.*OPR\/([\d.]+).*$/, '$1');
     },
-    'Vivaldi': function Vivaldi() {
+    Vivaldi: function Vivaldi() {
       return u.replace(/^.*Vivaldi\/([\d.]+).*$/, '$1');
     },
-    'Yandex': function Yandex() {
+    Yandex: function Yandex() {
       return u.replace(/^.*YaBrowser\/([\d.]+).*$/, '$1');
     },
-    'Arora': function Arora() {
+    Arora: function Arora() {
       return u.replace(/^.*Arora\/([\d.]+).*$/, '$1');
     },
-    'Lunascape': function Lunascape() {
+    Lunascape: function Lunascape() {
       return u.replace(/^.*Lunascape[\/\s]([\d.]+).*$/, '$1');
     },
-    'QupZilla': function QupZilla() {
+    QupZilla: function QupZilla() {
       return u.replace(/^.*QupZilla[\/\s]([\d.]+).*$/, '$1');
     },
     'Coc Coc': function CocCoc() {
       return u.replace(/^.*coc_coc_browser\/([\d.]+).*$/, '$1');
     },
-    'Kindle': function Kindle() {
+    Kindle: function Kindle() {
       return u.replace(/^.*Version\/([\d.]+).*$/, '$1');
     },
-    'Iceweasel': function Iceweasel() {
+    Iceweasel: function Iceweasel() {
       return u.replace(/^.*Iceweasel\/([\d.]+).*$/, '$1');
     },
-    'Konqueror': function Konqueror() {
+    Konqueror: function Konqueror() {
       return u.replace(/^.*Konqueror\/([\d.]+).*$/, '$1');
     },
-    'Iceape': function Iceape() {
+    Iceape: function Iceape() {
       return u.replace(/^.*Iceape\/([\d.]+).*$/, '$1');
     },
-    'SeaMonkey': function SeaMonkey() {
+    SeaMonkey: function SeaMonkey() {
       return u.replace(/^.*SeaMonkey\/([\d.]+).*$/, '$1');
     },
-    'Epiphany': function Epiphany() {
+    Epiphany: function Epiphany() {
       return u.replace(/^.*Epiphany\/([\d.]+).*$/, '$1');
     },
     '360': function _() {
@@ -731,25 +731,25 @@ function Browser() {
       var chrome_vision = u.replace(/^.*Chrome\/([\d]+).*$/, '$1');
       return hash[chrome_vision] || '';
     },
-    'Maxthon': function Maxthon() {
+    Maxthon: function Maxthon() {
       return u.replace(/^.*Maxthon\/([\d.]+).*$/, '$1');
     },
-    'QQBrowser': function QQBrowser() {
+    QQBrowser: function QQBrowser() {
       return u.replace(/^.*QQBrowser\/([\d.]+).*$/, '$1');
     },
-    'QQ': function QQ() {
+    QQ: function QQ() {
       return u.replace(/^.*QQ\/([\d.]+).*$/, '$1');
     },
-    'Baidu': function Baidu() {
+    Baidu: function Baidu() {
       return u.replace(/^.*BIDUBrowser[\s\/]([\d.]+).*$/, '$1');
     },
-    'UC': function UC() {
+    UC: function UC() {
       return u.replace(/^.*UC?Browser\/([\d.]+).*$/, '$1');
     },
-    'Sogou': function Sogou() {
+    Sogou: function Sogou() {
       return u.replace(/^.*SE ([\d.X]+).*$/, '$1').replace(/^.*SogouMobileBrowser\/([\d.]+).*$/, '$1');
     },
-    'LBBROWSER': function LBBROWSER() {
+    LBBROWSER: function LBBROWSER() {
       var hash = {
         '57': '6.5',
         '49': '6.0',
@@ -766,37 +766,37 @@ function Browser() {
     '2345Explorer': function Explorer() {
       return u.replace(/^.*2345Explorer\/([\d.]+).*$/, '$1');
     },
-    'TheWorld': function TheWorld() {
+    TheWorld: function TheWorld() {
       return u.replace(/^.*TheWorld ([\d.]+).*$/, '$1');
     },
-    'XiaoMi': function XiaoMi() {
+    XiaoMi: function XiaoMi() {
       return u.replace(/^.*MiuiBrowser\/([\d.]+).*$/, '$1');
     },
-    'Quark': function Quark() {
+    Quark: function Quark() {
       return u.replace(/^.*Quark\/([\d.]+).*$/, '$1');
     },
-    'Qiyu': function Qiyu() {
+    Qiyu: function Qiyu() {
       return u.replace(/^.*Qiyu\/([\d.]+).*$/, '$1');
     },
-    'Wechat': function Wechat() {
+    Wechat: function Wechat() {
       return u.replace(/^.*MicroMessenger\/([\d.]+).*$/, '$1');
     },
-    'Taobao': function Taobao() {
+    Taobao: function Taobao() {
       return u.replace(/^.*AliApp\(TB\/([\d.]+).*$/, '$1');
     },
-    'Alipay': function Alipay() {
+    Alipay: function Alipay() {
       return u.replace(/^.*AliApp\(AP\/([\d.]+).*$/, '$1');
     },
-    'Weibo': function Weibo() {
+    Weibo: function Weibo() {
       return u.replace(/^.*weibo__([\d.]+).*$/, '$1');
     },
-    'Douban': function Douban() {
+    Douban: function Douban() {
       return u.replace(/^.*com.douban.frodo\/([\d.]+).*$/, '$1');
     },
-    'Suning': function Suning() {
+    Suning: function Suning() {
       return u.replace(/^.*SNEBUY-APP([\d.]+).*$/, '$1');
     },
-    'iQiYi': function iQiYi() {
+    iQiYi: function iQiYi() {
       return u.replace(/^.*IqiyiVersion\/([\d.]+).*$/, '$1');
     }
   };
@@ -981,7 +981,7 @@ var m = function m(t) {
     y = function y(t, e, n) {
   var r;
   if (!t) return null;
-  if ("string" == typeof t) l[t] && (r = t), e && (l[t] = e, r = t);else {
+  if ('string' == typeof t) l[t] && (r = t), e && (l[t] = e, r = t);else {
     var s = t.name;
     l[s] = t, r = s;
   }
@@ -1009,7 +1009,7 @@ var D = function () {
   var d = h.prototype;
   return d.parse = function (t) {
     var e, n;
-    this.$d = null === (e = t.date) ? new Date(NaN) : p.isUndefined(e) ? new Date() : e instanceof Date ? e : "string" == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c)) ? new Date(n[1], n[2] - 1, n[3] || 1, n[5] || 0, n[6] || 0, n[7] || 0, n[8] || 0) : new Date(e), this.init(t);
+    this.$d = null === (e = t.date) ? new Date(NaN) : p.isUndefined(e) ? new Date() : e instanceof Date ? e : 'string' == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c)) ? new Date(n[1], n[2] - 1, n[3] || 1, n[5] || 0, n[6] || 0, n[7] || 0, n[8] || 0) : new Date(e), this.init(t);
   }, d.init = function (t) {
     this.$y = this.$d.getFullYear(), this.$M = this.$d.getMonth(), this.$D = this.$d.getDate(), this.$W = this.$d.getDay(), this.$H = this.$d.getHours(), this.$m = this.$d.getMinutes(), this.$s = this.$d.getSeconds(), this.$ms = this.$d.getMilliseconds(), this.$L = this.$L || y(t.locale, null, !0) || f;
   }, d.$locale = function () {
@@ -1115,6 +1115,7 @@ function createCommonjsModule(fn, module) {
 }
 
 var qs = createCommonjsModule(function (module, exports) {
+
   (function (f) {
     {
       module.exports = f();
@@ -1125,11 +1126,11 @@ var qs = createCommonjsModule(function (module, exports) {
         function o(i, f) {
           if (!n[i]) {
             if (!e[i]) {
-              var c = "function" == typeof commonjsRequire && commonjsRequire;
+              var c = 'function' == typeof commonjsRequire && commonjsRequire;
               if (!f && c) return c(i, !0);
               if (u) return u(i, !0);
-              var a = new Error("Cannot find module '" + i + "'");
-              throw a.code = "MODULE_NOT_FOUND", a;
+              var a = new Error('Cannot find module "' + i + '"');
+              throw a.code = 'MODULE_NOT_FOUND', a;
             }
 
             var p = n[i] = {
@@ -1144,7 +1145,7 @@ var qs = createCommonjsModule(function (module, exports) {
           return n[i].exports;
         }
 
-        for (var u = "function" == typeof commonjsRequire && commonjsRequire, i = 0; i < t.length; i++) {
+        for (var u = 'function' == typeof commonjsRequire && commonjsRequire, i = 0; i < t.length; i++) {
           o(t[i]);
         }
 
@@ -1158,7 +1159,7 @@ var qs = createCommonjsModule(function (module, exports) {
         var replace = String.prototype.replace;
         var percentTwenties = /%20/g;
         module.exports = {
-          'default': 'RFC3986',
+          default: 'RFC3986',
           formatters: {
             RFC1738: function RFC1738(value) {
               return replace.call(value, percentTwenties, '+');
@@ -1185,9 +1186,9 @@ var qs = createCommonjsModule(function (module, exports) {
           stringify: stringify
         };
       }, {
-        "./formats": 1,
-        "./parse": 3,
-        "./stringify": 4
+        './formats': 1,
+        './parse': 3,
+        './stringify': 4
       }],
       3: [function (require, module, exports) {
 
@@ -1411,7 +1412,7 @@ var qs = createCommonjsModule(function (module, exports) {
           return utils.compact(obj);
         };
       }, {
-        "./utils": 5
+        './utils': 5
       }],
       4: [function (require, module, exports) {
 
@@ -1612,8 +1613,8 @@ var qs = createCommonjsModule(function (module, exports) {
           return joined.length > 0 ? prefix + joined : '';
         };
       }, {
-        "./formats": 1,
-        "./utils": 5
+        './formats': 1,
+        './utils': 5
       }],
       5: [function (require, module, exports) {
 
@@ -1760,13 +1761,13 @@ var qs = createCommonjsModule(function (module, exports) {
           for (var i = 0; i < string.length; ++i) {
             var c = string.charCodeAt(i);
 
-            if (c === 0x2D // -
-            || c === 0x2E // .
-            || c === 0x5F // _
-            || c === 0x7E // ~
-            || c >= 0x30 && c <= 0x39 // 0-9
-            || c >= 0x41 && c <= 0x5A // a-z
-            || c >= 0x61 && c <= 0x7A // A-Z
+            if (c === 0x2d || // -
+            c === 0x2e || // .
+            c === 0x5f || // _
+            c === 0x7e || // ~
+            c >= 0x30 && c <= 0x39 || // 0-9
+            c >= 0x41 && c <= 0x5a || // a-z
+            c >= 0x61 && c <= 0x7a // A-Z
             ) {
                 out += string.charAt(i);
                 continue;
@@ -1778,18 +1779,18 @@ var qs = createCommonjsModule(function (module, exports) {
             }
 
             if (c < 0x800) {
-              out = out + (hexTable[0xC0 | c >> 6] + hexTable[0x80 | c & 0x3F]);
+              out = out + (hexTable[0xc0 | c >> 6] + hexTable[0x80 | c & 0x3f]);
               continue;
             }
 
-            if (c < 0xD800 || c >= 0xE000) {
-              out = out + (hexTable[0xE0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]);
+            if (c < 0xd800 || c >= 0xe000) {
+              out = out + (hexTable[0xe0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3f] + hexTable[0x80 | c & 0x3f]);
               continue;
             }
 
             i += 1;
-            c = 0x10000 + ((c & 0x3FF) << 10 | string.charCodeAt(i) & 0x3FF);
-            out += hexTable[0xF0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3F] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F];
+            c = 0x10000 + ((c & 0x3ff) << 10 | string.charCodeAt(i) & 0x3ff);
+            out += hexTable[0xf0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3f] + hexTable[0x80 | c >> 6 & 0x3f] + hexTable[0x80 | c & 0x3f];
           }
 
           return out;
@@ -1970,7 +1971,11 @@ var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global))
 var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
 
+/* eslint-disable */
+
 var root = freeGlobal || freeSelf || Function('return this')();
+/* eslint-enable */
+
 /** Detect free variable `exports`. */
 
 var freeExports = (typeof exports === "undefined" ? "undefined" : _typeof(exports)) == 'object' && exports && !exports.nodeType && exports;
@@ -2450,9 +2455,9 @@ function MapCache(entries) {
 
 function mapCacheClear() {
   this.__data__ = {
-    'hash': new Hash(),
-    'map': new (Map$1 || ListCache)(),
-    'string': new Hash()
+    hash: new Hash(),
+    map: new (Map$1 || ListCache)(),
+    string: new Hash()
   };
 }
 /**
@@ -3684,7 +3689,11 @@ var freeGlobal$1 = (typeof global === "undefined" ? "undefined" : _typeof(global
 var freeSelf$1 = (typeof self === "undefined" ? "undefined" : _typeof(self)) === 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
 
+/* eslint-disable */
+
 var root$1 = freeGlobal$1 || freeSelf$1 || Function('return this')();
+/* eslint-enable */
+
 /** Detect free variable `exports`. */
 
 var freeExports$1 = (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && exports && !exports.nodeType && exports;
@@ -4219,9 +4228,9 @@ function MapCache$1(entries) {
 
 function mapCacheClear$1() {
   this.__data__ = {
-    'hash': new Hash$1(),
-    'map': new (Map$2 || ListCache$1)(),
-    'string': new Hash$1()
+    hash: new Hash$1(),
+    map: new (Map$2 || ListCache$1)(),
+    string: new Hash$1()
   };
 }
 /**
@@ -5590,15 +5599,15 @@ function typeOf(input) {
  *   dtc.util.cookieSet('cookieName','value',expires)
  */
 function cookieSet(name, value, days) {
-  var expires = "";
+  var expires = '';
 
   if (days) {
     var date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toGMTString();
+    expires = '; expires=' + date.toGMTString();
   }
 
-  document.cookie = name + "=" + value + expires + "; path=/";
+  document.cookie = name + '=' + value + expires + '; path=/';
 }
 
 /**
@@ -5611,7 +5620,7 @@ function cookieSet(name, value, days) {
  */
 
 function cookieDel(name) {
-  cookieSet(name, "", -1);
+  cookieSet(name, '', -1);
 }
 
 /**
@@ -5623,7 +5632,7 @@ function cookieDel(name) {
  *   dtc.util.cookieGet('cookieName')
  */
 function cookieGet(name) {
-  var nameEQ = name + "=";
+  var nameEQ = name + '=';
   var ca = document.cookie.split(';');
 
   for (var i = 0; i < ca.length; i++) {
@@ -5680,7 +5689,7 @@ function trim(str) {
       reg = rega;
   }
 
-  return str.replace(reg, "");
+  return str.replace(reg, '');
 }
 
 var Lab62 =
@@ -5691,9 +5700,10 @@ function () {
 
     // Init delegate
     this.delegate = {
-      b62char: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-      b62string: ""
-    }; // Init generator
+      b62char: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+      b62string: '' // Init generator
+
+    };
 
     this.generator = function (length) {
       // Run loop specified times
@@ -5773,7 +5783,7 @@ function rgbToHex(input) {
 function hexToRgb(input) {
   var output = [];
   input = input.replace(/^[#]?(?:([0-9a-f]{6})|([0-9a-f]{3}))$/i, function (match, group1, group2) {
-    return group1 ? group1 : group2.replace(/([0-9a-f])/ig, '$1$1');
+    return group1 ? group1 : group2.replace(/([0-9a-f])/gi, '$1$1');
   });
 
   if (input.length === 6) {
@@ -5861,7 +5871,11 @@ var freeGlobal$2 = (typeof global === "undefined" ? "undefined" : _typeof(global
 var freeSelf$2 = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
 
+/* eslint-disable */
+
 var root$2 = freeGlobal$2 || freeSelf$2 || Function('return this')();
+/* eslint-enable */
+
 /** Used for built-in method references. */
 
 var objectProto$4 = Object.prototype;

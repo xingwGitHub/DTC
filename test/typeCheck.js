@@ -1,3 +1,4 @@
+/* eslint-disable */
 const expect = require('chai').expect
 const util = require('../dist/dtc.util.umd').default
 

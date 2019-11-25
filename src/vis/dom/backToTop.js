@@ -1,75 +1,77 @@
 function restArguments(func, startIndex) {
-  startIndex = startIndex == null ? func.length - 1 : +startIndex;
-  return function () {
+  startIndex = startIndex == null ? func.length - 1 : +startIndex
+  return function() {
     var length = Math.max(arguments.length - startIndex, 0),
       rest = Array(length),
-      index = 0;
+      index = 0
     for (; index < length; index++) {
-      rest[index] = arguments[index + startIndex];
+      rest[index] = arguments[index + startIndex]
     }
     switch (startIndex) {
       case 0:
-        return func.call(this, rest);
+        return func.call(this, rest)
       case 1:
-        return func.call(this, arguments[0], rest);
+        return func.call(this, arguments[0], rest)
       case 2:
-        return func.call(this, arguments[0], arguments[1], rest);
+        return func.call(this, arguments[0], arguments[1], rest)
     }
-    var args = Array(startIndex + 1);
+    var args = Array(startIndex + 1)
     for (index = 0; index < startIndex; index++) {
-      args[index] = arguments[index];
+      args[index] = arguments[index]
     }
-    args[startIndex] = rest;
-    return func.apply(this, args);
-  };
-};
-var delay = restArguments(function (func, wait, args) {
-  return setTimeout(function () {
-    return func.apply(null, args);
-  }, wait);
-});
+    args[startIndex] = rest
+    return func.apply(this, args)
+  }
+}
+var delay = restArguments(function(func, wait, args) {
+  return setTimeout(function() {
+    return func.apply(null, args)
+  }, wait)
+})
 
 function debounce(func, wait, immediate) {
-  var timeout, result;
+  var timeout, result
 
-  var later = function (context, args) {
-    timeout = null;
-    if (args) result = func.apply(context, args);
-  };
+  var later = function(context, args) {
+    timeout = null
+    if (args) result = func.apply(context, args)
+  }
 
-  var debounced = restArguments(function (args) {
-    if (timeout) clearTimeout(timeout);
+  var debounced = restArguments(function(args) {
+    if (timeout) clearTimeout(timeout)
     if (immediate) {
-      var callNow = !timeout;
-      timeout = setTimeout(later, wait);
-      if (callNow) result = func.apply(this, args);
+      var callNow = !timeout
+      timeout = setTimeout(later, wait)
+      if (callNow) result = func.apply(this, args)
     } else {
-      timeout = delay(later, wait, this, args);
+      timeout = delay(later, wait, this, args)
     }
 
-    return result;
-  });
+    return result
+  })
 
-  debounced.cancel = function () {
-    clearTimeout(timeout);
-    timeout = null;
-  };
+  debounced.cancel = function() {
+    clearTimeout(timeout)
+    timeout = null
+  }
 
-  return debounced;
-};
+  return debounced
+}
 /**
  * 生成一个默认的返回顶部按钮
  */
 function defaultDom() {
   let container = document.createElement('div')
-  container.style.cssText = 'width: 40px;height: 40px;border-radius: 20px;background-color: #3eaf7c;display: flex;'
+  container.style.cssText =
+    'width: 40px;height: 40px;border-radius: 20px;background-color: #3eaf7c;display: flex;'
   let arrow = document.createElement('span')
-  arrow.style.cssText = 'margin: auto;width: 16px;height: 16px;border-top: 4px solid #fff;border-left: 4px solid #fff;transform: translateY(3px) rotate(45deg);'
+  arrow.style.cssText =
+    'margin: auto;width: 16px;height: 16px;border-top: 4px solid #fff;border-left: 4px solid #fff;transform: translateY(3px) rotate(45deg);'
   container.appendChild(arrow)
-  container.addEventListener('mouseover', function (ev) {
+  container.addEventListener('mouseover', function(ev) {
     this.style.backgroundColor = '#3eaf7c54'
   })
-  container.addEventListener('mouseout', function () {
+  container.addEventListener('mouseout', function() {
     this.style.backgroundColor = '#3eaf7c'
   })
   return container
@@ -114,8 +116,8 @@ function BakcToTop(threshold = 300, ele, property = {}) {
     dom.style.setProperty(p, prop[p])
   }
   // 添加点击事件
-  dom.addEventListener('click', function (ev) {
-    ev.stopPropagation();
+  dom.addEventListener('click', function(ev) {
+    ev.stopPropagation()
     scrollToTop()
     hide()
   })
@@ -137,9 +139,12 @@ function BakcToTop(threshold = 300, ele, property = {}) {
   }
 
   function getScrollTop() {
-    return window.pageYOffset ||
+    return (
+      window.pageYOffset ||
       document.documentElement.scrollTop ||
-      document.body.scrollTop || 0
+      document.body.scrollTop ||
+      0
+    )
   }
 
   function scrollToTop() {
@@ -169,11 +174,11 @@ function BakcToTop(threshold = 300, ele, property = {}) {
     dom.style.setProperty('opacity', '0')
   }
   // 实例方法
-  this.getDom = function () {
+  this.getDom = function() {
     return dom
   }
   // 销毁实例对象
-  this.dispose = function () {
+  this.dispose = function() {
     window.removeEventListener('scroll', scrollCb)
     window.removeEventListener('resize', resizeCb)
     dom.remove()

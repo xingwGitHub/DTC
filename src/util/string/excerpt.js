@@ -9,9 +9,9 @@
  */
 
 function excerpt(str, nwords) {
-  let words = str.split('');
-  words.splice(nwords, words.length - 1);
-  return words.join('') + (words.length !== str.split('').length ? '…' : '');
+  let words = str.split('')
+  words.splice(nwords, words.length - 1)
+  return words.join('') + (words.length !== str.split('').length ? '…' : '')
 }
 
 export default excerpt

@@ -9,37 +9,39 @@
 
 /** `Object#toString` result references. */
 var asyncTag = '[object AsyncFunction]',
-    funcTag = '[object Function]',
-    genTag = '[object GeneratorFunction]',
-    nullTag = '[object Null]',
-    proxyTag = '[object Proxy]',
-    undefinedTag = '[object Undefined]';
+  funcTag = '[object Function]',
+  genTag = '[object GeneratorFunction]',
+  nullTag = '[object Null]',
+  proxyTag = '[object Proxy]',
+  undefinedTag = '[object Undefined]'
 
 /** Detect free variable `global` from Node.js. */
-var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+var freeGlobal =
+  typeof global == 'object' && global && global.Object === Object && global
 
 /** Detect free variable `self`. */
-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self
 
 /** Used as a reference to the global object. */
-var root = freeGlobal || freeSelf || Function('return this')();
-
+/* eslint-disable */
+var root = freeGlobal || freeSelf || Function('return this')()
+/* eslint-enable */
 /** Used for built-in method references. */
-var objectProto = Object.prototype;
+var objectProto = Object.prototype
 
 /** Used to check objects for own properties. */
-var hasOwnProperty = objectProto.hasOwnProperty;
+var hasOwnProperty = objectProto.hasOwnProperty
 
 /**
  * Used to resolve the
  * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
  * of values.
  */
-var nativeObjectToString = objectProto.toString;
+var nativeObjectToString = objectProto.toString
 
 /** Built-in value references. */
 var Symbol = root.Symbol,
-    symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+  symToStringTag = Symbol ? Symbol.toStringTag : undefined
 
 /**
  * The base implementation of `getTag` without fallbacks for buggy environments.
@@ -50,11 +52,11 @@ var Symbol = root.Symbol,
  */
 function baseGetTag(value) {
   if (value == null) {
-    return value === undefined ? undefinedTag : nullTag;
+    return value === undefined ? undefinedTag : nullTag
   }
-  return (symToStringTag && symToStringTag in Object(value))
+  return symToStringTag && symToStringTag in Object(value)
     ? getRawTag(value)
-    : objectToString(value);
+    : objectToString(value)
 }
 
 /**
@@ -66,22 +68,22 @@ function baseGetTag(value) {
  */
 function getRawTag(value) {
   var isOwn = hasOwnProperty.call(value, symToStringTag),
-      tag = value[symToStringTag];
+    tag = value[symToStringTag]
 
   try {
-    value[symToStringTag] = undefined;
-    var unmasked = true;
+    value[symToStringTag] = undefined
+    var unmasked = true
   } catch (e) {}
 
-  var result = nativeObjectToString.call(value);
+  var result = nativeObjectToString.call(value)
   if (unmasked) {
     if (isOwn) {
-      value[symToStringTag] = tag;
+      value[symToStringTag] = tag
     } else {
-      delete value[symToStringTag];
+      delete value[symToStringTag]
     }
   }
-  return result;
+  return result
 }
 
 /**
@@ -92,7 +94,7 @@ function getRawTag(value) {
  * @returns {string} Returns the converted string.
  */
 function objectToString(value) {
-  return nativeObjectToString.call(value);
+  return nativeObjectToString.call(value)
 }
 
 /**
@@ -114,12 +116,12 @@ function objectToString(value) {
  */
 function isFunction(value) {
   if (!isObject(value)) {
-    return false;
+    return false
   }
   // The use of `Object#toString` avoids issues with the `typeof` operator
   // in Safari 9 which returns 'object' for typed arrays and other constructors.
-  var tag = baseGetTag(value);
-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+  var tag = baseGetTag(value)
+  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag
 }
 
 /**
@@ -148,8 +150,8 @@ function isFunction(value) {
  * // => false
  */
 function isObject(value) {
-  var type = typeof value;
-  return value != null && (type == 'object' || type == 'function');
+  var type = typeof value
+  return value != null && (type == 'object' || type == 'function')
 }
 
-export default isFunction;
+export default isFunction

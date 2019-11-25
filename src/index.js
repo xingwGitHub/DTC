@@ -9,9 +9,4 @@ export default {
   dev,
   voice
 }
-export {
-  util,
-  vis,
-  dev,
-  voice
-}
+export { util, vis, dev, voice }

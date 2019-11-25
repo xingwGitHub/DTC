@@ -9,7 +9,7 @@ import cookieSet from './cookieSet'
  */
 
 function cookieDel(name) {
-    cookieSet(name, "", -1);
+  cookieSet(name, '', -1)
 }
 
 export default cookieDel

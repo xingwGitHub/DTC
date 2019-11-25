@@ -9,7 +9,7 @@
  */
 
 function concat(...args) {
-    return [].concat.apply([], args);
+  return [].concat.apply([], args)
 }
 
 export default concat

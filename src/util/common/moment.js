@@ -18,9 +18,13 @@ var t = 'millisecond',
     weekdays: '星期日_星期一_星期二_星期三_星期四_星期五_星期六'.split('_'),
     weekdaysShort: '周日_周一_周二_周三_周四_周五_周六'.split('_'),
     weekdaysMin: '日_一_二_三_四_五_六'.split('_'),
-    months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split('_'),
-    monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split('_'),
-    ordinal: function (n) {
+    months: '一月_二月_三月_四月_五月_六月_七月_八月_九月_十月_十一月_十二月'.split(
+      '_'
+    ),
+    monthsShort: '1月_2月_3月_4月_5月_6月_7月_8月_9月_10月_11月_12月'.split(
+      '_'
+    ),
+    ordinal: function(n) {
       return n + '日'
     },
     relativeTime: {
@@ -39,83 +43,128 @@ var t = 'millisecond',
       yy: '%d 年'
     }
   },
-  d = function (t, e, n) {
-    var r = String(t);
+  d = function(t, e, n) {
+    var r = String(t)
     return !r || r.length >= e ? t : '' + Array(e + 1 - r.length).join(n) + t
   },
   $ = {
     padStart: d,
-    padZoneStr: function (t) {
-      var e = Math.abs(t), n = Math.floor(e / 60), r = e % 60;
+    padZoneStr: function(t) {
+      var e = Math.abs(t),
+        n = Math.floor(e / 60),
+        r = e % 60
       return (t <= 0 ? '+' : '-') + d(n, 2, '0') + ':' + d(r, 2, '0')
     },
-    monthDiff: function (t, e) {
-      var n = 12 * (e.year() - t.year()) + (e.month() - t.month()), r = t.clone().add(n, 'months'), s = e - r < 0, i = t.clone().add(n + (s ? -1 : 1), 'months');
+    monthDiff: function(t, e) {
+      var n = 12 * (e.year() - t.year()) + (e.month() - t.month()),
+        r = t.clone().add(n, 'months'),
+        s = e - r < 0,
+        i = t.clone().add(n + (s ? -1 : 1), 'months')
       return Number(-(n + (e - r) / (s ? r - i : i - r)))
     },
-    absFloor: function (t) {
+    absFloor: function(t) {
       return t < 0 ? Math.ceil(t) || 0 : Math.floor(t)
     },
-    prettyUnit: function (c) {
-      return {
-        M: a,
-        y: u,
-        w: i,
-        d: s,
-        h: r,
-        m: n,
-        s: e,
-        ms: t
-      }[c] || String(c || '').toLowerCase().replace(/s$/, '')
+    prettyUnit: function(c) {
+      return (
+        {
+          M: a,
+          y: u,
+          w: i,
+          d: s,
+          h: r,
+          m: n,
+          s: e,
+          ms: t
+        }[c] ||
+        String(c || '')
+          .toLowerCase()
+          .replace(/s$/, '')
+      )
     },
-    isUndefined: function (t) {
+    isUndefined: function(t) {
       return void 0 === t
     }
   },
   f = 'zh-cn',
-  l = {};
-l[f] = h;
-var m = function (t) {
-  return t instanceof D
-}, y = function (t, e, n) {
-  var r;
-  if (!t)return null;
-  if ("string" == typeof t)l[t] && (r = t), e && (l[t] = e, r = t); else {
-    var s = t.name;
-    l[s] = t, r = s;
-  }
-  return n || (f = r), r
-}, M = function (t, e) {
-  if (m(t))return t.clone();
-  var n = e || {};
-  return n.date = t, new D(n)
-}, S = function (t, e) {
-  return M(t, {locale: e.$L})
-}, p = $;
-p.parseLocale = y, p.isDayjs = m, p.wrapper = S;
-var D = (function () {
-  function h (t) {
-    this.parse(t);
-  }
-  var d = h.prototype;
-  return d.parse = function (t) {
-    var e, n;
-    this.$d = null === (e = t.date) ? new Date(NaN) : p.isUndefined(e) ? new Date : e instanceof Date ? e : "string" == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c)) ? new Date(n[1], n[2] - 1, n[3] || 1, n[5] || 0, n[6] || 0, n[7] || 0, n[8] || 0) : new Date(e), this.init(t);
+  l = {}
+l[f] = h
+var m = function(t) {
+    return t instanceof D
   },
-    d.init = function (t) {
-      this.$y = this.$d.getFullYear(), this.$M = this.$d.getMonth(), this.$D = this.$d.getDate(), this.$W = this.$d.getDay(), this.$H = this.$d.getHours(), this.$m = this.$d.getMinutes(), this.$s = this.$d.getSeconds(), this.$ms = this.$d.getMilliseconds(), this.$L = this.$L || y(t.locale, null, !0) || f;
-    },
-    d.$locale = function () {
+  y = function(t, e, n) {
+    var r
+    if (!t) return null
+    if ('string' == typeof t) l[t] && (r = t), e && ((l[t] = e), (r = t))
+    else {
+      var s = t.name
+      ;(l[s] = t), (r = s)
+    }
+    return n || (f = r), r
+  },
+  M = function(t, e) {
+    if (m(t)) return t.clone()
+    var n = e || {}
+    return (n.date = t), new D(n)
+  },
+  S = function(t, e) {
+    return M(t, { locale: e.$L })
+  },
+  p = $
+;(p.parseLocale = y), (p.isDayjs = m), (p.wrapper = S)
+var D = (function() {
+  function h(t) {
+    this.parse(t)
+  }
+  var d = h.prototype
+  return (
+    (d.parse = function(t) {
+      var e, n
+      ;(this.$d =
+        null === (e = t.date)
+          ? new Date(NaN)
+          : p.isUndefined(e)
+          ? new Date()
+          : e instanceof Date
+          ? e
+          : 'string' == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c))
+          ? new Date(
+              n[1],
+              n[2] - 1,
+              n[3] || 1,
+              n[5] || 0,
+              n[6] || 0,
+              n[7] || 0,
+              n[8] || 0
+            )
+          : new Date(e)),
+        this.init(t)
+    }),
+    (d.init = function(t) {
+      ;(this.$y = this.$d.getFullYear()),
+        (this.$M = this.$d.getMonth()),
+        (this.$D = this.$d.getDate()),
+        (this.$W = this.$d.getDay()),
+        (this.$H = this.$d.getHours()),
+        (this.$m = this.$d.getMinutes()),
+        (this.$s = this.$d.getSeconds()),
+        (this.$ms = this.$d.getMilliseconds()),
+        (this.$L = this.$L || y(t.locale, null, !0) || f)
+    }),
+    (d.$locale = function() {
       return l[this.$L]
-    },
-    d.format = function (t) {
-      var e = this, n = t || 'yyyy-MM-ddTHH:mm:ssZ',
+    }),
+    (d.format = function(t) {
+      var e = this,
+        n = t || 'yyyy-MM-ddTHH:mm:ssZ',
         r = p.padZoneStr(this.$d.getTimezoneOffset()),
-        s = this.$locale(), i = s.weekdays, a = s.months,
-        u = function (t, e, n, r) {
-          return t && t[e] || n[e].substr(0, r)
-        };
-      return n.replace(o, function (t) {
+        s = this.$locale(),
+        i = s.weekdays,
+        a = s.months,
+        u = function(t, e, n, r) {
+          return (t && t[e]) || n[e].substr(0, r)
+        }
+      return n.replace(o, function(t) {
         if (t.indexOf('[') > -1) return t.replace(/\[|\]/g, '')
         switch (t) {
           case 'yy':
@@ -148,7 +197,13 @@ var D = (function () {
             return p.padStart(e.$H, 2, '0')
           case 'h':
           case 'hh':
-            return e.$H === 0 ? 12 : p.padStart(e.$H < 13 ? e.$H : e.$H - 12, t === 'hh' ? 2 : 1, '0')
+            return e.$H === 0
+              ? 12
+              : p.padStart(
+                  e.$H < 13 ? e.$H : e.$H - 12,
+                  t === 'hh' ? 2 : 1,
+                  '0'
+                )
           case 'a':
             return e.$H < 12 ? 'am' : 'pm'
           case 'A':
@@ -169,7 +224,9 @@ var D = (function () {
             return r.replace(':', '')
         }
       })
-    }, h
-}());
+    }),
+    h
+  )
+})()
 
 export default M

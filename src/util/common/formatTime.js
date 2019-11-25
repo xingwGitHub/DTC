@@ -22,23 +22,44 @@ function formatTime(timeStamp, needHMS, type) {
   }
 
   //timeStamp是整数，否则要parseInt转换
-  var time = new Date(timeStamp);
-  var y = time.getFullYear();
-  var m = time.getMonth() + 1;
-  var d = time.getDate();
-  var h = time.getHours();
-  var mm = time.getMinutes();
-  var s = time.getSeconds();
+  var time = new Date(timeStamp)
+  var y = time.getFullYear()
+  var m = time.getMonth() + 1
+  var d = time.getDate()
+  var h = time.getHours()
+  var mm = time.getMinutes()
+  var s = time.getSeconds()
 
   if (type !== '年月日') {
-    return needHMS ? (y + localType + add0(m) + localType + add0(d) + ' ' +
-      h + ':' + mm + ':' + s) : (y + localType + add0(m) + localType + add0(d))
+    return needHMS
+      ? y +
+          localType +
+          add0(m) +
+          localType +
+          add0(d) +
+          ' ' +
+          h +
+          ':' +
+          mm +
+          ':' +
+          s
+      : y + localType + add0(m) + localType + add0(d)
   } else {
-    return needHMS ? (y + '年' + add0(m) + '月' + add0(d) + '日' + ' ' +
-        h + ':' + mm + ':' + s) :
-      y + '年' + add0(m) + '月' + add0(d) + '日'
+    return needHMS
+      ? y +
+          '年' +
+          add0(m) +
+          '月' +
+          add0(d) +
+          '日' +
+          ' ' +
+          h +
+          ':' +
+          mm +
+          ':' +
+          s
+      : y + '年' + add0(m) + '月' + add0(d) + '日'
   }
 }
-
 
 export default formatTime

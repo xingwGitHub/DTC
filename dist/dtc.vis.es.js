@@ -1,11 +1,11 @@
 
 /**
-  * dtc V1.0.7
+  * dtc V1.0.9
   * (c) 2018-2019
   * Copyright all contributors
   * @license Released under MIT license.
   */
-import { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, Raycaster, Color, Texture, SpriteMaterial, Sprite, MeshBasicMaterial, DoubleSide, PlaneGeometry, Mesh, Geometry, LineBasicMaterial, Group, Line, Shape, ExtrudeGeometry, MeshPhongMaterial, MeshLambertMaterial, Object3D, BoxGeometry, AdditiveBlending, ShaderMaterial, FrontSide, QuadraticBezierCurve3, BufferGeometry, BufferAttribute, ShaderLib, Points, Scene, PerspectiveCamera, WebGLRenderer, Fog, AmbientLight, DirectionalLight, SpotLight, DirectionalLightHelper, SpotLightHelper, GridHelper, AxisHelper } from 'three';
+import { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, Raycaster, Color, Texture, SpriteMaterial, Sprite, MeshBasicMaterial, DoubleSide, PlaneGeometry, Mesh, Geometry, LineBasicMaterial, Group, Line, Shape, ExtrudeGeometry, MeshPhongMaterial, MeshLambertMaterial, Object3D, BoxGeometry, AdditiveBlending, ShaderMaterial, FrontSide, QuadraticBezierCurve3, BufferGeometry, BufferAttribute, ShaderLib, Points, Scene, PerspectiveCamera, WebGLRenderer, Fog, AmbientLight, DirectionalLight, SpotLight, DirectionalLightHelper, SpotLightHelper, GridHelper, AxisHelper, CatmullRomCurve3, TubeGeometry, Camera } from 'three';
 
 function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -183,8 +183,9 @@ var Detector = {
     element = Detector.getWebGLErrorMessage();
     element.id = id;
     parent.appendChild(element);
-  }
-}; // "undefined" != typeof module && module.exports && (module.exports = Detector);
+  } // "undefined" != typeof module && module.exports && (module.exports = Detector);
+
+};
 
 /**
  * @author qiao / https://github.com/qiao
@@ -252,15 +253,15 @@ function OrbitControls(object, domElement) {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    BOTTOM: 40
-  }; // Mouse buttons
+    BOTTOM: 40 // Mouse buttons
 
+  };
   this.mouseButtons = {
     ORBIT: MOUSE.LEFT,
     ZOOM: MOUSE.MIDDLE,
-    PAN: MOUSE.RIGHT
-  }; // for reset
+    PAN: MOUSE.RIGHT // for reset
 
+  };
   this.target0 = this.target.clone();
   this.position0 = this.object.position.clone();
   this.zoom0 = this.object.zoom; //
@@ -363,9 +364,7 @@ function OrbitControls(object, domElement) {
     document.removeEventListener('mousemove', onMouseMove, false);
     document.removeEventListener('mouseup', onMouseUp, false);
     window.removeEventListener('keydown', onKeyDown, false); //scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
-  }; //
-  // internals
-  //
+  }; // internals
 
 
   var scope = this;
@@ -551,7 +550,6 @@ function OrbitControls(object, domElement) {
   }
 
   function handleMouseWheel(event) {
-    // console.log( 'handleMouseWheel' );
     if (event.deltaY < 0) {
       dollyOut(getZoomScale());
     } else if (event.deltaY > 0) {
@@ -562,7 +560,6 @@ function OrbitControls(object, domElement) {
   }
 
   function handleKeyDown(event) {
-    //console.log( 'handleKeyDown' );
     switch (event.keyCode) {
       case scope.keys.UP:
         pan(0, scope.keyPanSpeed);
@@ -587,12 +584,10 @@ function OrbitControls(object, domElement) {
   }
 
   function handleTouchStartRotate(event) {
-    //console.log( 'handleTouchStartRotate' );
     rotateStart.set(event.touches[0].pageX, event.touches[0].pageY);
   }
 
   function handleTouchStartDolly(event) {
-    //console.log( 'handleTouchStartDolly' );
     var dx = event.touches[0].pageX - event.touches[1].pageX;
     var dy = event.touches[0].pageY - event.touches[1].pageY;
     var distance = Math.sqrt(dx * dx + dy * dy);
@@ -600,16 +595,13 @@ function OrbitControls(object, domElement) {
   }
 
   function handleTouchStartPan(event) {
-    //console.log( 'handleTouchStartPan' );
     panStart.set(event.touches[0].pageX, event.touches[0].pageY);
   }
 
   function handleTouchMoveRotate(event) {
-    //console.log( 'handleTouchMoveRotate' );
     rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
     rotateDelta.subVectors(rotateEnd, rotateStart);
-    var element = scope.domElement === document ? scope.domElement.body : scope.domElement; // rotating across whole screen goes 360 degrees around
-
+    var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
     rotateLeft(2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed); // rotating up and down along whole screen attempts to go 360, but limited to 180
 
     rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed);
@@ -618,7 +610,6 @@ function OrbitControls(object, domElement) {
   }
 
   function handleTouchMoveDolly(event) {
-    //console.log( 'handleTouchMoveDolly' );
     var dx = event.touches[0].pageX - event.touches[1].pageX;
     var dy = event.touches[0].pageY - event.touches[1].pageY;
     var distance = Math.sqrt(dx * dx + dy * dy);
@@ -636,16 +627,12 @@ function OrbitControls(object, domElement) {
   }
 
   function handleTouchMovePan(event) {
-    //console.log( 'handleTouchMovePan' );
     panEnd.set(event.touches[0].pageX, event.touches[0].pageY);
     panDelta.subVectors(panEnd, panStart);
     pan(panDelta.x, panDelta.y);
     panStart.copy(panEnd);
     scope.update();
   }
-  //
-  // event handlers - FSM: listen for events and reset state
-  //
 
 
   function onMouseDown(event) {
@@ -814,6 +801,7 @@ function OrbitControls(object, domElement) {
 
   this.update();
 }
+
 OrbitControls.prototype = Object.create(EventDispatcher.prototype);
 OrbitControls.prototype.constructor = OrbitControls;
 Object.defineProperties(OrbitControls.prototype, {
@@ -1013,7 +1001,7 @@ void 0 === Date.now && (Date.now = function () {
 var TWEEN = TWEEN || function () {
   var n = [];
   return {
-    REVISION: "14",
+    REVISION: '14',
     getAll: function getAll() {
       return n;
     },
@@ -1031,7 +1019,7 @@ var TWEEN = TWEEN || function () {
       if (0 === n.length) return !1;
       var r = 0;
 
-      for (t = void 0 !== t ? t : "undefined" != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(); r < n.length;) {
+      for (t = void 0 !== t ? t : 'undefined' != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(); r < n.length;) {
         n[r].update(t) ? r++ : n.splice(r, 1);
       }
 
@@ -1067,14 +1055,13 @@ TWEEN.Tween = function (n) {
   this.to = function (n, t) {
     return void 0 !== t && (o = t), i = n, this;
   }, this.start = function (n) {
-    TWEEN.add(this), f = !0, v = !1, h = void 0 !== n ? n : "undefined" != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(), h += s;
+    TWEEN.add(this), f = !0, v = !1, h = void 0 !== n ? n : 'undefined' != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(), h += s;
 
     for (var o in i) {
       if (i[o] instanceof Array) {
         if (0 === i[o].length) continue;
         i[o] = [t[o]].concat(i[o]);
       }
-
       r[o] = t[o], r[o] instanceof Array == !1 && (r[o] *= 1), u[o] = r[o] || 0;
     }
 
@@ -1116,7 +1103,7 @@ TWEEN.Tween = function (n) {
     for (f in i) {
       var m = r[f] || 0,
           N = i[f];
-      N instanceof Array ? t[f] = p(N, O) : ("string" == typeof N && (N = m + parseFloat(N, 10)), "number" == typeof N && (t[f] = m + (N - m) * O));
+      N instanceof Array ? t[f] = p(N, O) : ('string' == typeof N && (N = m + parseFloat(N, 10)), 'number' == typeof N && (t[f] = m + (N - m) * O));
     }
 
     if (null !== I && I.call(t, O), 1 == M) {
@@ -1124,7 +1111,7 @@ TWEEN.Tween = function (n) {
         isFinite(e) && e--;
 
         for (f in u) {
-          if ("string" == typeof i[f] && (u[f] = u[f] + parseFloat(i[f], 10)), a) {
+          if ('string' == typeof i[f] && (u[f] = u[f] + parseFloat(i[f], 10)), a) {
             var T = u[f];
             u[f] = i[f], i[f] = T;
           }
@@ -1160,7 +1147,7 @@ TWEEN.Tween = function (n) {
       return n * (2 - n);
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n : -.5 * (--n * (n - 2) - 1);
+      return (n *= 2) < 1 ? 0.5 * n * n : -0.5 * (--n * (n - 2) - 1);
     }
   },
   Cubic: {
@@ -1171,7 +1158,7 @@ TWEEN.Tween = function (n) {
       return --n * n * n + 1;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n : .5 * ((n -= 2) * n * n + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n : 0.5 * ((n -= 2) * n * n + 2);
     }
   },
   Quartic: {
@@ -1182,7 +1169,7 @@ TWEEN.Tween = function (n) {
       return 1 - --n * n * n * n;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n * n : -.5 * ((n -= 2) * n * n * n - 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n * n : -0.5 * ((n -= 2) * n * n * n - 2);
     }
   },
   Quintic: {
@@ -1193,7 +1180,7 @@ TWEEN.Tween = function (n) {
       return --n * n * n * n * n + 1;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n * n * n : .5 * ((n -= 2) * n * n * n * n + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n * n * n : 0.5 * ((n -= 2) * n * n * n * n + 2);
     }
   },
   Sinusoidal: {
@@ -1204,7 +1191,7 @@ TWEEN.Tween = function (n) {
       return Math.sin(n * Math.PI / 2);
     },
     InOut: function InOut(n) {
-      return .5 * (1 - Math.cos(Math.PI * n));
+      return 0.5 * (1 - Math.cos(Math.PI * n));
     }
   },
   Exponential: {
@@ -1215,7 +1202,7 @@ TWEEN.Tween = function (n) {
       return 1 === n ? 1 : 1 - Math.pow(2, -10 * n);
     },
     InOut: function InOut(n) {
-      return 0 === n ? 0 : 1 === n ? 1 : (n *= 2) < 1 ? .5 * Math.pow(1024, n - 1) : .5 * (-Math.pow(2, -10 * (n - 1)) + 2);
+      return 0 === n ? 0 : 1 === n ? 1 : (n *= 2) < 1 ? 0.5 * Math.pow(1024, n - 1) : 0.5 * (-Math.pow(2, -10 * (n - 1)) + 2);
     }
   },
   Circular: {
@@ -1226,27 +1213,27 @@ TWEEN.Tween = function (n) {
       return Math.sqrt(1 - --n * n);
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? -.5 * (Math.sqrt(1 - n * n) - 1) : .5 * (Math.sqrt(1 - (n -= 2) * n) + 1);
+      return (n *= 2) < 1 ? -0.5 * (Math.sqrt(1 - n * n) - 1) : 0.5 * (Math.sqrt(1 - (n -= 2) * n) + 1);
     }
   },
   Elastic: {
     In: function In(n) {
       var t,
-          r = .1,
-          i = .4;
+          r = 0.1,
+          i = 0.4;
       return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), -(r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i)));
     },
     Out: function Out(n) {
       var t,
-          r = .1,
-          i = .4;
+          r = 0.1,
+          i = 0.4;
       return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), r * Math.pow(2, -10 * n) * Math.sin(2 * (n - t) * Math.PI / i) + 1);
     },
     InOut: function InOut(n) {
       var t,
-          r = .1,
-          i = .4;
-      return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), (n *= 2) < 1 ? -.5 * r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) : r * Math.pow(2, -10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) * .5 + 1);
+          r = 0.1,
+          i = 0.4;
+      return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), (n *= 2) < 1 ? -0.5 * r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) : r * Math.pow(2, -10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) * 0.5 + 1);
     }
   },
   Back: {
@@ -1260,7 +1247,7 @@ TWEEN.Tween = function (n) {
     },
     InOut: function InOut(n) {
       var t = 2.5949095;
-      return (n *= 2) < 1 ? .5 * n * n * ((t + 1) * n - t) : .5 * ((n -= 2) * n * ((t + 1) * n + t) + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * ((t + 1) * n - t) : 0.5 * ((n -= 2) * n * ((t + 1) * n + t) + 2);
     }
   },
   Bounce: {
@@ -1268,10 +1255,10 @@ TWEEN.Tween = function (n) {
       return 1 - TWEEN.Easing.Bounce.Out(1 - n);
     },
     Out: function Out(n) {
-      return 1 / 2.75 > n ? 7.5625 * n * n : 2 / 2.75 > n ? 7.5625 * (n -= 1.5 / 2.75) * n + .75 : 2.5 / 2.75 > n ? 7.5625 * (n -= 2.25 / 2.75) * n + .9375 : 7.5625 * (n -= 2.625 / 2.75) * n + .984375;
+      return 1 / 2.75 > n ? 7.5625 * n * n : 2 / 2.75 > n ? 7.5625 * (n -= 1.5 / 2.75) * n + 0.75 : 2.5 / 2.75 > n ? 7.5625 * (n -= 2.25 / 2.75) * n + 0.9375 : 7.5625 * (n -= 2.625 / 2.75) * n + 0.984375;
     },
     InOut: function InOut(n) {
-      return .5 > n ? .5 * TWEEN.Easing.Bounce.In(2 * n) : .5 * TWEEN.Easing.Bounce.Out(2 * n - 1) + .5;
+      return 0.5 > n ? 0.5 * TWEEN.Easing.Bounce.In(2 * n) : 0.5 * TWEEN.Easing.Bounce.Out(2 * n - 1) + 0.5;
     }
   }
 }, TWEEN.Interpolation = {
@@ -1325,8 +1312,8 @@ TWEEN.Tween = function (n) {
       };
     }(),
     CatmullRom: function CatmullRom(n, t, r, i, u) {
-      var o = .5 * (r - n),
-          e = .5 * (i - t),
+      var o = 0.5 * (r - n),
+          e = 0.5 * (i - t),
           a = u * u,
           f = u * a;
       return (2 * t - 2 * r + o + e) * f + (-3 * t + 3 * r - 2 * o - e) * a + o * u + t;
@@ -1335,23 +1322,23 @@ TWEEN.Tween = function (n) {
 };
 
 function colorToHex(color) {
-  if (typeof color === "string") {
+  if (typeof color === 'string') {
     if (color.indexOf('#') !== -1) color = parseInt(color.replace('#', ''), 16);else color = new Color(color).getHex();
   }
 
   return color;
 }
 /**
-   * 过渡动画
-   * @param {Object|*} from - 修改的启始值
-   * @param {Object|*} to - 修改的结束值
-   * @param {number} [time] - 完成时间
-   * @param {number} [delay=0] - 延迟时间
-   * @param {Tween.Easing} [easing=TWEEN.Easing.Linear.None] -动画类型
-   * @param {callback} [callback] - 完成回调
-   * @example
-   * $.transition(area.position, {x:0,y:0,z:10}, 1000, 500, TWEEN.Easing.Quartic.Out, callback)
-   */
+ * 过渡动画
+ * @param {Object|*} from - 修改的启始值
+ * @param {Object|*} to - 修改的结束值
+ * @param {number} [time] - 完成时间
+ * @param {number} [delay=0] - 延迟时间
+ * @param {Tween.Easing} [easing=TWEEN.Easing.Linear.None] -动画类型
+ * @param {callback} [callback] - 完成回调
+ * @example
+ * $.transition(area.position, {x:0,y:0,z:10}, 1000, 500, TWEEN.Easing.Quartic.Out, callback)
+ */
 
 
 function transition(from, to, time, delay, easing, callback) {
@@ -1378,20 +1365,20 @@ var extend = function () {
     '[object Object]': 'object'
   },
       type = function type(obj) {
-    return obj == null ? String(obj) : class2type[toString.call(obj)] || "object";
+    return obj == null ? String(obj) : class2type[toString.call(obj)] || 'object';
   },
       isWindow = function isWindow(obj) {
-    return obj && _typeof(obj) === "object" && "setInterval" in obj;
+    return obj && _typeof(obj) === 'object' && 'setInterval' in obj;
   },
       isArray = Array.isArray || function (obj) {
-    return type(obj) === "array";
+    return type(obj) === 'array';
   },
       isPlainObject = function isPlainObject(obj) {
-    if (!obj || type(obj) !== "object" || obj.nodeType || isWindow(obj)) {
+    if (!obj || type(obj) !== 'object' || obj.nodeType || isWindow(obj)) {
       return false;
     }
 
-    if (obj.constructor && !hasOwn.call(obj, "constructor") && !hasOwn.call(obj.constructor.prototype, "isPrototypeOf")) {
+    if (obj.constructor && !hasOwn.call(obj, 'constructor') && !hasOwn.call(obj.constructor.prototype, 'isPrototypeOf')) {
       return false;
     }
 
@@ -1411,11 +1398,13 @@ var extend = function () {
       }
 
       if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
+        var clone = void 0;
+
         if (copyIsArray) {
           copyIsArray = false;
-          var clone = src && isArray(src) ? src : [];
+          clone = src && isArray(src) ? src : [];
         } else {
-          var clone = src && isPlainObject(src) ? src : {};
+          clone = src && isPlainObject(src) ? src : {};
         }
 
         target[name] = extend(deep, clone, copy);
@@ -1570,9 +1559,10 @@ var stats = createCommonjsModule(function (module) {
     msDiv.appendChild(msGraph);
 
     while (msGraph.children.length < 74) {
-      var bar = document.createElement('span');
-      bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#131';
-      msGraph.appendChild(bar);
+      var _bar = document.createElement('span');
+
+      _bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#131';
+      msGraph.appendChild(_bar);
     }
 
     var setMode = function setMode(value) {
@@ -1672,7 +1662,7 @@ function (_THREE$Object3D) {
 
     //调用实现父类的构造函数
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Area).call(this, pros));
-    _this.type = "Area";
+    _this.type = 'Area';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var coords = pros.coords;
@@ -1735,7 +1725,7 @@ function (_THREE$Object3D) {
         });
         return this.getGeoMesh(geo, pros);
       } catch (e) {
-        console.warn("Area.getMesh:" + e.message);
+        console.warn('Area.getMesh:' + e.message);
       }
     }
     /**
@@ -1947,9 +1937,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mouseout', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':out')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':out')
+     *  });
      */
 
   }, {
@@ -1974,9 +1964,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mouseover', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':over')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':over')
+     *  });
      */
 
   }, {
@@ -2004,9 +1994,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mousedown', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':click')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':click')
+     *  });
      */
 
   }, {
@@ -2063,7 +2053,7 @@ function (_THREE$Object3D) {
     _classCallCheck(this, DataRange);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DataRange).call(this, pros));
-    _this.type = "DataRange";
+    _this.type = 'DataRange';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var boxGeo = new BoxGeometry(pros.width, pros.height, pros.extrudeHeight);
@@ -2213,11 +2203,11 @@ function (_THREE$Sprite) {
      * @example
      *
      * Mark.draw=(ctx)=>{
-       *  context.clearRect(0, 0, 128, 128);
-       *  context.fillStyle = '#ff0000';
-       *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
-       *  context.fill();
-       * }
+     *  context.clearRect(0, 0, 128, 128);
+     *  context.fillStyle = '#ff0000';
+     *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
+     *  context.fill();
+     * }
      */
     value: function draw(context, v) {
       v = v || 1;
@@ -2255,7 +2245,7 @@ function (_THREE$Sprite) {
      */
     get: function get() {
       if (!Mark._texture) {
-        var canvas = document.createElement("canvas");
+        var canvas = document.createElement('canvas');
         canvas.width = 128;
         canvas.height = 128;
         var context = canvas.getContext('2d');
@@ -2280,7 +2270,7 @@ function (_THREE$Sprite) {
       color: pros.color,
       blending: AdditiveBlending
     });
-    _this.type = "Mark";
+    _this.type = 'Mark';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var size = pros.size || _this.userData.min;
@@ -2319,12 +2309,12 @@ function (_THREE$Sprite) {
    * @param {callback} [callback] - 动画完成后回调
    * @example
    *  map.addEventListener('mouseover', (event) => {
-     *    let obj = event.target;
-     *    if(obj.type==='Mark')
-     *    {
-     *      obj.setColor('#ff5555',100);// 鼠标移入设置为红色
-     *    }
-     *  });
+   *    let obj = event.target;
+   *    if(obj.type==='Mark')
+   *    {
+   *      obj.setColor('#ff5555',100);// 鼠标移入设置为红色
+   *    }
+   *  });
    */
 
 
@@ -2350,12 +2340,12 @@ function (_THREE$Sprite) {
      * @example
      *
      * map.addEventListener('mouseover', (event) => {
-       *     let obj = event.target;
-       *     if(obj.type==='Mark')
-       *     {
-       *       obj.setPosition({x:0,y:0,z:4},300) //标注升高
-       *     }
-       *   });
+     *     let obj = event.target;
+     *     if(obj.type==='Mark')
+     *     {
+     *       obj.setPosition({x:0,y:0,z:4},300) //标注升高
+     *     }
+     *   });
      *
      */
 
@@ -2478,8 +2468,8 @@ ShaderLib$1.line = {
       value: null
     }
   },
-  vertexShader: ["uniform float amplitude;", "attribute float size;", "attribute vec3 customColor;", "varying vec3 vColor;", "void main() {", "vColor = customColor;", "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "gl_PointSize = size;", "gl_Position = projectionMatrix * mvPosition;", "}"].join("\n"),
-  fragmentShader: ["uniform vec3 color;", "uniform sampler2D texture;", "varying vec3 vColor;", "void main() {", "gl_FragColor = vec4( color * vColor, 1.0 );", "gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );", "}"].join("\n")
+  vertexShader: ['uniform float amplitude;', 'attribute float size;', 'attribute vec3 customColor;', 'varying vec3 vColor;', 'void main() {', 'vColor = customColor;', 'vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );', 'gl_PointSize = size;', 'gl_Position = projectionMatrix * mvPosition;', '}'].join('\n'),
+  fragmentShader: ['uniform vec3 color;', 'uniform sampler2D texture;', 'varying vec3 vColor;', 'void main() {', 'gl_FragColor = vec4( color * vColor, 1.0 );', 'gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );', '}'].join('\n')
   /**
    * 物体内边缘发光
    */
@@ -2487,26 +2477,26 @@ ShaderLib$1.line = {
 };
 ShaderLib$1.edgelight = {
   uniforms: {
-    "s": {
-      type: "f",
+    s: {
+      type: 'f',
       value: -1.0
     },
-    "b": {
-      type: "f",
+    b: {
+      type: 'f',
       value: 1.0
     },
-    "p": {
-      type: "f",
+    p: {
+      type: 'f',
       value: 2.0
     },
     glowColor: {
-      type: "c",
+      type: 'c',
       value: new Color(0x00ffff)
     }
   },
-  vertexShader: ["varying vec3 vNormal;", "varying vec3 vPositionNormal;", "void main() {", "vNormal = normalize( normalMatrix * normal ); ", // 转换到视图空间
-  "vPositionNormal = normalize(( modelViewMatrix * vec4(position, 1.0) ).xyz);", "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", "}"].join("\n"),
-  fragmentShader: ["uniform vec3 glowColor;", "uniform float p;", "uniform float b;", "uniform float s;", "varying vec3 vNormal;", "varying vec3 vPositionNormal;", "void main() ", "{", "  float a = pow( b + s * abs(dot(vNormal, vPositionNormal)), p );", "  gl_FragColor = vec4( glowColor, a );", "}"].join("\n")
+  vertexShader: ['varying vec3 vNormal;', 'varying vec3 vPositionNormal;', 'void main() {', 'vNormal = normalize( normalMatrix * normal ); ', // 转换到视图空间
+  'vPositionNormal = normalize(( modelViewMatrix * vec4(position, 1.0) ).xyz);', 'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );', '}'].join('\n'),
+  fragmentShader: ['uniform vec3 glowColor;', 'uniform float p;', 'uniform float b;', 'uniform float s;', 'varying vec3 vNormal;', 'varying vec3 vPositionNormal;', 'void main() ', '{', '  float a = pow( b + s * abs(dot(vNormal, vPositionNormal)), p );', '  gl_FragColor = vec4( glowColor, a );', '}'].join('\n')
   /**
    * 创建着色器材质，根据shader
    * @param {shader} shader  shader in three.ShaderlibExp
@@ -2561,11 +2551,11 @@ function (_THREE$Line) {
      * @example
      *
      * Line.draw=(ctx)=>{
-       *  context.clearRect(0, 0, 128, 128);
-       *  context.fillStyle = '#ff0000';
-       *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
-       *  context.fill();
-       * }
+     *  context.clearRect(0, 0, 128, 128);
+     *  context.fillStyle = '#ff0000';
+     *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
+     *  context.fill();
+     * }
      */
     value: function draw(context) {
       context.clearRect(0, 0, 128, 128);
@@ -2601,7 +2591,7 @@ function (_THREE$Line) {
      */
     get: function get() {
       if (!Line$$1._texture) {
-        var canvas = document.createElement("canvas");
+        var canvas = document.createElement('canvas');
         canvas.width = 128;
         canvas.height = 128;
         var context = canvas.getContext('2d');
@@ -2814,13 +2804,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mouseout', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标移出操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标移出操作
+     *        }
+     *      });
      */
 
   }, {
@@ -2860,13 +2850,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mouseover', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标移入操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标移入操作
+     *        }
+     *      });
      */
 
   }, {
@@ -2908,13 +2898,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mousedown', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标单击操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标单击操作
+     *        }
+     *      });
      */
 
   }, {
@@ -2950,115 +2940,116 @@ var extrudeOption = {
   amount: 1,
   //厚度
   bevelThickness: 1,
-  bevelSize: .2,
+  bevelSize: 0.2,
   bevelEnabled: false,
   bevelSegments: 5,
   curveSegments: 1,
   steps: 1
+  /**
+   * 创建3D地图.
+   * @class
+   * @example
+   * //配置默认值
+   * let opt={
+   *      name:'',                // 调试使用，window['name']为该实例对象，注意设置debugger:true启用
+   *      el:document.body,       // 容器
+   *      geoData:null,           // 地图geojson数据
+   *      hasStats:true,          // 是否显示性能面板
+   *      hasControls:true,       // 用户是否能控制视角
+   *      autoRotate:false,       // 是否自动旋转视角
+   *      ambientColor:0x333333,  // 环境光颜色
+   *      directionalColor:0xffffff,// 平行光颜色
+   *      hasLoadEffect:false,    // 是否有加载效果
+   *      debugger:false,         // 调试模式
+   *      cameraPosition:{x:0,y:0,z:40},// 相机位置
+   *      visualMap:null,         // 直观图图例
+   *      extrude:extrudeOption,  // 立体厚度参数
+   *
+   *      area:{
+   *          data:[],            // 地图用户数据[{ name:'北京', value:, color:0xff3333 }...]
+   *          // area参数默认值
+   *          name:'',            // 区域名称
+   *          color:0x3366ff,     // 地图颜色
+   *          hoverColor:0xff9933,// 鼠标移入颜色
+   *          lineColor:0xffffff, // 线颜色
+   *          opacity:1,          // 地图透明度
+   *          hasPhong:true,      // 是否反光材质
+   *          shininess:50,       // 反光材质光滑度
+   *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
+   *          loadEffect:false,   // 区域加载效果
+   *          hasHoverHeight:true,// 鼠标移入区域升高
+   *      },
+   *
+   *      mark:{
+   *          data:[],            // 标注点数据[{ name:'XXX', coord:[11,22], value:13 }...]
+   *          // mark参数默认值
+   *          name:'',            // 标注名称
+   *          color:0xffffff,     // 标注点颜色
+   *          hoverColor:0xff9933,// 鼠标移入颜色
+   *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
+   *          min:0.01,
+   *          max:5,
+   *      },
+   *
+   *      line:{
+   *          data:[],                        //线数据[{ fromName:'', toName:'', coords:[toCoord, fromCoord] }...]
+   *          // line参数默认值
+   *          color:0x55eeff,                 // 颜色
+   *          hoverColor:0xff9933,            // 鼠标移入颜色
+   *          hoverExclusive:true,            // 鼠标移入排除其他线条
+   *          hoverAnimaTime:100,             // 鼠标移入动画过渡时间
+   *          spaceHeight:5,                  // 曲线空间高度
+   *          hasHalo:true,                   // 是否开启光晕效果
+   *          hasHaloAnimate:true,            // 是否开启光晕动画效果
+   *          haloDensity:2,                  // 光点密度 值越大 越浓密，越消耗性能
+   *          haloRunRate:0.01,               // 光点运动频率
+   *          haloColor:0xffffff,             // 默认继承color颜色[不建议修改]
+   *          haloSize:10,                    // 光晕大小
+   *          decayColor:0x222222,            // 未激活线条颜色
+   *      },
+   *
+   *      //内置对象
+   *      mapObject:null,     // 地图对象
+   *      areaGroup:null,     // 区域组
+   *      lineGroup:null,     // 线条组
+   *      markGroup:null,     // 标记组
+   *      scene:null,         // 场景对象
+   *      camera:null,        // 相机对象
+   *      renderer:null,      // 渲染器对象
+   *      stats:null,         // 性能对象
+   *      controls:null,      // 控制器对象
+   *      _w:0,               // 呈现宽度
+   *      _h:0,               // 呈现高度
+   *      __event:null,        // 事件对象
+   *  }
+   *
+   * let map = new Map3D(opt);
+   *
+   * //事件注册
+   *   map.addEventListener('mousedown', function (event) {
+   *        let obj = event.target;
+   *        if(obj.type==='Area') //type='Area|Line|Mark'
+   *          obj.setColor('#ff6666', 500);
+   *      });
+   *
+   *   map.addEventListener('mouseout', (event) => {
+   *        let obj = event.target;
+   *        console.log(obj.type+':out')
+   *      });
+   *
+   *   map.addEventListener('mouseover', (event) => {
+   *        let obj = event.target;
+   *        console.log(obj.userData.name);
+   *        //self.mapTitlePositon.left = $(window).scrollLeft() + event.clientX + 20 + 'px';
+   *        //self.mapTitlePositon.top = $(window).scrollTop() + event.clientY + 20 + 'px';
+   *      })
+   *
+   *   map.addEventListener('resize', function (event) {
+   *        console.log('resize...');
+   *      });
+   */
+
 };
-/**
- * 创建3D地图.
- * @class
- * @example
- * //配置默认值
- * let opt={
- *      name:'',                // 调试使用，window['name']为该实例对象，注意设置debugger:true启用
- *      el:document.body,       // 容器
- *      geoData:null,           // 地图geojson数据
- *      hasStats:true,          // 是否显示性能面板
- *      hasControls:true,       // 用户是否能控制视角
- *      autoRotate:false,       // 是否自动旋转视角
- *      ambientColor:0x333333,  // 环境光颜色
- *      directionalColor:0xffffff,// 平行光颜色
- *      hasLoadEffect:false,    // 是否有加载效果
- *      debugger:false,         // 调试模式
- *      cameraPosition:{x:0,y:0,z:40},// 相机位置
- *      visualMap:null,         // 直观图图例
- *      extrude:extrudeOption,  // 立体厚度参数
- *
- *      area:{
- *          data:[],            // 地图用户数据[{ name:'北京', value:, color:0xff3333 }...]
- *          // area参数默认值
- *          name:'',            // 区域名称
- *          color:0x3366ff,     // 地图颜色
- *          hoverColor:0xff9933,// 鼠标移入颜色
- *          lineColor:0xffffff, // 线颜色
- *          opacity:1,          // 地图透明度
- *          hasPhong:true,      // 是否反光材质
- *          shininess:50,       // 反光材质光滑度
- *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
- *          loadEffect:false,   // 区域加载效果
- *          hasHoverHeight:true,// 鼠标移入区域升高
- *      },
- *
- *      mark:{
- *          data:[],            // 标注点数据[{ name:'XXX', coord:[11,22], value:13 }...]
- *          // mark参数默认值
- *          name:'',            // 标注名称
- *          color:0xffffff,     // 标注点颜色
- *          hoverColor:0xff9933,// 鼠标移入颜色
- *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
- *          min:0.01,
- *          max:5,
- *      },
- *
- *      line:{
- *          data:[],                        //线数据[{ fromName:'', toName:'', coords:[toCoord, fromCoord] }...]
- *          // line参数默认值
- *          color:0x55eeff,                 // 颜色
- *          hoverColor:0xff9933,            // 鼠标移入颜色
- *          hoverExclusive:true,            // 鼠标移入排除其他线条
- *          hoverAnimaTime:100,             // 鼠标移入动画过渡时间
- *          spaceHeight:5,                  // 曲线空间高度
- *          hasHalo:true,                   // 是否开启光晕效果
- *          hasHaloAnimate:true,            // 是否开启光晕动画效果
- *          haloDensity:2,                  // 光点密度 值越大 越浓密，越消耗性能
- *          haloRunRate:0.01,               // 光点运动频率
- *          haloColor:0xffffff,             // 默认继承color颜色[不建议修改]
- *          haloSize:10,                    // 光晕大小
- *          decayColor:0x222222,            // 未激活线条颜色
- *      },
- *
- *      //内置对象
- *      mapObject:null,     // 地图对象
- *      areaGroup:null,     // 区域组
- *      lineGroup:null,     // 线条组
- *      markGroup:null,     // 标记组
- *      scene:null,         // 场景对象
- *      camera:null,        // 相机对象
- *      renderer:null,      // 渲染器对象
- *      stats:null,         // 性能对象
- *      controls:null,      // 控制器对象
- *      _w:0,               // 呈现宽度
- *      _h:0,               // 呈现高度
- *      __event:null,        // 事件对象
- *  }
- *
- * let map = new Map3D(opt);
- *
- * //事件注册
- *   map.addEventListener('mousedown', function (event) {
- *        let obj = event.target;
- *        if(obj.type==='Area') //type='Area|Line|Mark'
- *          obj.setColor('#ff6666', 500);
- *      });
- *
- *   map.addEventListener('mouseout', (event) => {
- *        let obj = event.target;
- *        console.log(obj.type+':out')
- *      });
- *
- *   map.addEventListener('mouseover', (event) => {
- *        let obj = event.target;
- *        console.log(obj.userData.name);
- *        //self.mapTitlePositon.left = $(window).scrollLeft() + event.clientX + 20 + 'px';
- *        //self.mapTitlePositon.top = $(window).scrollTop() + event.clientY + 20 + 'px';
- *      })
- *
- *   map.addEventListener('resize', function (event) {
- *        console.log('resize...');
- *      });
- */
 
 var Map3D =
 /*#__PURE__*/
@@ -3227,9 +3218,7 @@ function () {
 
     this._w = this.el.offsetWidth;
     this._h = this.el.offsetHeight;
-    console.time('init');
     this.init();
-    console.timeEnd('init');
     this.initEvent();
   }
   /**
@@ -3270,23 +3259,15 @@ function () {
 
       this.mapObject = new Group();
       this.initControls();
-      this.initDebug();
-      console.time('initArea'); //初始化区域
+      this.initDebug(); //初始化区域
 
-      this.initArea();
-      console.timeEnd('initArea');
-      console.time('initMark'); //初始化标注点
+      this.initArea(); //初始化标注点
 
-      this.initMark();
-      console.timeEnd('initMark');
-      console.time('initLine'); //初始化线条
+      this.initMark(); //初始化线条
 
-      this.initLine();
-      console.timeEnd('initLine');
-      console.time('inintDataRange'); //初始化数据等级范围
+      this.initLine(); //初始化数据等级范围
 
-      this.inintDataRange();
-      console.timeEnd('inintDataRange'); //根据数据中心位置偏移
+      this.inintDataRange(); //根据数据中心位置偏移
 
       if (this.geoData.cp) {
         this.mapObject.position.set(-this.geoData.cp[0], -this.geoData.cp[1], 0);
@@ -3616,7 +3597,7 @@ function () {
     key: "printCameraPosition",
     value: function printCameraPosition() {
       var v3 = this.camera.position;
-      this.infoPlane.textContent = '相机位置 {x:' + v3.x.toFixed(4) + ",y:" + v3.y.toFixed(4) + ",z:" + v3.z.toFixed(4) + '}';
+      this.infoPlane.textContent = '相机位置 {x:' + v3.x.toFixed(4) + ',y:' + v3.y.toFixed(4) + ',z:' + v3.z.toFixed(4) + '}';
     }
     /**
      * 删除区域
@@ -3945,6 +3926,7 @@ function restArguments(func, startIndex) {
     return func.apply(this, args);
   };
 }
+
 var delay = restArguments(function (func, wait, args) {
   return setTimeout(function () {
     return func.apply(null, args);
@@ -3983,6 +3965,7 @@ function debounce(func, wait, immediate) {
 /**
  * 生成一个默认的返回顶部按钮
  */
+
 
 function defaultDom() {
   var container = document.createElement('div');
@@ -4113,9 +4096,141 @@ function BakcToTop() {
   };
 }
 
+/**
+ * 相机路径跟踪对象
+ * 注意：如果场景使用了控制器，请在control.update 之后调用，update()
+ * @example
+ *  var cpf=new CameraPathFollow({camera,scene,speed,debug...})
+ *  cpf.start({[[0,0,0],[10,0,0]],speed:0.003,onCompleted:()=>{}})
+ */
+
+var CameraPathFollow =
+/*#__PURE__*/
+function () {
+  function CameraPathFollow(opt) {
+    _classCallCheck(this, CameraPathFollow);
+
+    if (!opt.camera instanceof Camera) {
+      console.warn('new CameraPathFollow "THREE.Camera" initialization required.');
+      return false;
+    } //默认设置
+
+
+    this._opt = {
+      camera: null,
+      scene: null,
+      speed: 0.0005,
+      points: null,
+      //[[31,35,40],[38,8,30],[-38,49,20],[0,0,100],[0,30,20],[0,80,10]],
+      lookAt: null,
+      //设置固定焦点 如:[0,0,0],默认自动跟随path运动前方
+      _pct: 0,
+      //导航起始位置 0-1
+      debug: false,
+      isStart: true,
+      controls: null,
+      //场景控制器对象
+      repeat: false,
+      _isReady: false
+    };
+    Object.assign(this, this._opt, opt);
+  }
+
+  _createClass(CameraPathFollow, [{
+    key: "start",
+    value: function start(opt) {
+      if (!opt.points) {
+        console.warn('CameraPathFollow.start(opt.points) "points" is not Array.');
+        return;
+      }
+
+      this._pct = 0;
+      Object.assign(this, opt);
+      this.setPath(this.points);
+      this.isStart = true;
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this.isStart = false;
+    }
+    /**
+     * 设置导航路径,把路径点转化为3d圆滑线条
+     * @param {*} points
+     * @example
+     * var path=[[0,0,0],[100,0,0]..]
+     * @example
+     * var path=[new THREE.Vector3(0, 0, 0),new THREE.Vector3(100, 0, 0),..]
+     */
+
+  }, {
+    key: "setPath",
+    value: function setPath(points) {
+      if (!Array.isArray(points)) {
+        console.warn('CameraPathFollow.setPath(points) "points" is not Array.');
+        return;
+      } // 兼容path数组和Vector3数组
+
+
+      if (!(points[0] instanceof Vector3)) {
+        for (var i = 0; i < points.length; i++) {
+          var x = points[i][0];
+          var y = points[i][1];
+          var z = points[i][2];
+          points[i] = new Vector3(x, y, z);
+        }
+      }
+
+      this.path = new CatmullRomCurve3(points);
+
+      if (this.scene && this.debug) {
+        this.debugeTube && scene.remove(this.debugeTube);
+        var material = new MeshBasicMaterial({
+          color: 0xffffff,
+          wireframe: true
+        });
+        var geometry = new TubeGeometry(this.path, this.path.length * 3, 2, 3, true);
+        this.debugeTube = new Mesh(geometry, material);
+        scene.add(this.debugeTube);
+      }
+
+      this._isReady = true;
+    } //更新
+
+  }, {
+    key: "update",
+    value: function update() {
+      if (!this.isStart || !this._isReady) return;
+      this._pct += this.speed;
+
+      if (!this.repeat && this._pct > 1) {
+        this.isStart = false; //完成执行回调
+
+        this.onCompleted && this.onCompleted();
+        return;
+      }
+
+      var pt1 = this.path.getPointAt(this._pct % 1);
+      var pt2 = this.path.getPointAt((this._pct + 0.01) % 1);
+      this.camera.position.set(pt1.x, pt1.y, pt1.z);
+
+      if (this.lookAt) {
+        this.camera.lookAt(this.lookAt[0], this.lookAt[1], this.lookAt[2]);
+      } else {
+        this.camera.lookAt(pt2.x, pt2.y, pt2.z);
+      }
+
+      this.onUpdate && this.onUpdate();
+    }
+  }]);
+
+  return CameraPathFollow;
+}();
+
 var index = {
   Map3D: Map3D,
-  BackToTop: BakcToTop
+  BackToTop: BakcToTop,
+  CameraPathFollow: CameraPathFollow
 };
 
 export default index;

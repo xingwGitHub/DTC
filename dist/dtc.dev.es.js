@@ -1,6 +1,6 @@
 
 /**
-  * dtc V1.0.7
+  * dtc V1.0.9
   * (c) 2018-2019
   * Copyright all contributors
   * @license Released under MIT license.
@@ -235,7 +235,7 @@ Stats.Panel = function (name, fg, bg) {
       context.fillRect(GRAPH_X + GRAPH_WIDTH - PR, GRAPH_Y, PR, round((1 - value / maxValue) * GRAPH_HEIGHT));
     }
   };
-}; // module.exports = Stats
+};
 
 var index = {
   Stats: Stats

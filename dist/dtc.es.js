@@ -1,11 +1,11 @@
 
 /**
-  * dtc V1.0.7
+  * dtc V1.0.9
   * (c) 2018-2019
   * Copyright all contributors
   * @license Released under MIT license.
   */
-import { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, Raycaster, Color, Texture, SpriteMaterial, Sprite, MeshBasicMaterial, DoubleSide, PlaneGeometry, Mesh, Geometry, LineBasicMaterial, Group, Line, Shape, ExtrudeGeometry, MeshPhongMaterial, MeshLambertMaterial, Object3D, BoxGeometry, AdditiveBlending, ShaderMaterial, FrontSide, QuadraticBezierCurve3, BufferGeometry, BufferAttribute, ShaderLib, Points, Scene, PerspectiveCamera, WebGLRenderer, Fog, AmbientLight, DirectionalLight, SpotLight, DirectionalLightHelper, SpotLightHelper, GridHelper, AxisHelper } from 'three';
+import { EventDispatcher, Vector3, MOUSE, Quaternion, Spherical, Vector2, Raycaster, Color, Texture, SpriteMaterial, Sprite, MeshBasicMaterial, DoubleSide, PlaneGeometry, Mesh, Geometry, LineBasicMaterial, Group, Line, Shape, ExtrudeGeometry, MeshPhongMaterial, MeshLambertMaterial, Object3D, BoxGeometry, AdditiveBlending, ShaderMaterial, FrontSide, QuadraticBezierCurve3, BufferGeometry, BufferAttribute, ShaderLib, Points, Scene, PerspectiveCamera, WebGLRenderer, Fog, AmbientLight, DirectionalLight, SpotLight, DirectionalLightHelper, SpotLightHelper, GridHelper, AxisHelper, CatmullRomCurve3, TubeGeometry, Camera } from 'three';
 
 /**
  * 合并多个数组为一个数组。
@@ -497,71 +497,71 @@ function Browser() {
   var _this = this || {};
   var match = {
     //内核
-    'Trident': u.indexOf('Trident') > -1 || u.indexOf('NET CLR') > -1,
-    'Presto': u.indexOf('Presto') > -1,
-    'WebKit': u.indexOf('AppleWebKit') > -1,
-    'Gecko': u.indexOf('Gecko/') > -1,
+    Trident: u.indexOf('Trident') > -1 || u.indexOf('NET CLR') > -1,
+    Presto: u.indexOf('Presto') > -1,
+    WebKit: u.indexOf('AppleWebKit') > -1,
+    Gecko: u.indexOf('Gecko/') > -1,
     //浏览器
-    'Safari': u.indexOf('Safari') > -1,
-    'Chrome': u.indexOf('Chrome') > -1 || u.indexOf('CriOS') > -1,
-    'IE': u.indexOf('MSIE') > -1 || u.indexOf('Trident') > -1,
-    'Edge': u.indexOf('Edge') > -1,
-    'Firefox': u.indexOf('Firefox') > -1 || u.indexOf('FxiOS') > -1,
+    Safari: u.indexOf('Safari') > -1,
+    Chrome: u.indexOf('Chrome') > -1 || u.indexOf('CriOS') > -1,
+    IE: u.indexOf('MSIE') > -1 || u.indexOf('Trident') > -1,
+    Edge: u.indexOf('Edge') > -1,
+    Firefox: u.indexOf('Firefox') > -1 || u.indexOf('FxiOS') > -1,
     'Firefox Focus': u.indexOf('Focus') > -1,
-    'Chromium': u.indexOf('Chromium') > -1,
-    'Opera': u.indexOf('Opera') > -1 || u.indexOf('OPR') > -1,
-    'Vivaldi': u.indexOf('Vivaldi') > -1,
-    'Yandex': u.indexOf('YaBrowser') > -1,
-    'Arora': u.indexOf('Arora') > -1,
-    'Lunascape': u.indexOf('Lunascape') > -1,
-    'QupZilla': u.indexOf('QupZilla') > -1,
+    Chromium: u.indexOf('Chromium') > -1,
+    Opera: u.indexOf('Opera') > -1 || u.indexOf('OPR') > -1,
+    Vivaldi: u.indexOf('Vivaldi') > -1,
+    Yandex: u.indexOf('YaBrowser') > -1,
+    Arora: u.indexOf('Arora') > -1,
+    Lunascape: u.indexOf('Lunascape') > -1,
+    QupZilla: u.indexOf('QupZilla') > -1,
     'Coc Coc': u.indexOf('coc_coc_browser') > -1,
-    'Kindle': u.indexOf('Kindle') > -1 || u.indexOf('Silk/') > -1,
-    'Iceweasel': u.indexOf('Iceweasel') > -1,
-    'Konqueror': u.indexOf('Konqueror') > -1,
-    'Iceape': u.indexOf('Iceape') > -1,
-    'SeaMonkey': u.indexOf('SeaMonkey') > -1,
-    'Epiphany': u.indexOf('Epiphany') > -1,
+    Kindle: u.indexOf('Kindle') > -1 || u.indexOf('Silk/') > -1,
+    Iceweasel: u.indexOf('Iceweasel') > -1,
+    Konqueror: u.indexOf('Konqueror') > -1,
+    Iceape: u.indexOf('Iceape') > -1,
+    SeaMonkey: u.indexOf('SeaMonkey') > -1,
+    Epiphany: u.indexOf('Epiphany') > -1,
     '360': u.indexOf('QihooBrowser') > -1,
     '360EE': u.indexOf('360EE') > -1,
     '360SE': u.indexOf('360SE') > -1,
-    'UC': u.indexOf('UC') > -1 || u.indexOf(' UBrowser') > -1,
-    'QQBrowser': u.indexOf('QQBrowser') > -1,
-    'QQ': u.indexOf('QQ/') > -1,
-    'Baidu': u.indexOf('Baidu') > -1 || u.indexOf('BIDUBrowser') > -1,
-    'Maxthon': u.indexOf('Maxthon') > -1,
-    'Sogou': u.indexOf('MetaSr') > -1 || u.indexOf('Sogou') > -1,
-    'LBBROWSER': u.indexOf('LBBROWSER') > -1,
+    UC: u.indexOf('UC') > -1 || u.indexOf(' UBrowser') > -1,
+    QQBrowser: u.indexOf('QQBrowser') > -1,
+    QQ: u.indexOf('QQ/') > -1,
+    Baidu: u.indexOf('Baidu') > -1 || u.indexOf('BIDUBrowser') > -1,
+    Maxthon: u.indexOf('Maxthon') > -1,
+    Sogou: u.indexOf('MetaSr') > -1 || u.indexOf('Sogou') > -1,
+    LBBROWSER: u.indexOf('LBBROWSER') > -1,
     '2345Explorer': u.indexOf('2345Explorer') > -1,
-    'TheWorld': u.indexOf('TheWorld') > -1,
-    'XiaoMi': u.indexOf('MiuiBrowser') > -1,
-    'Quark': u.indexOf('Quark') > -1,
-    'Qiyu': u.indexOf('Qiyu') > -1,
-    'Wechat': u.indexOf('MicroMessenger') > -1,
-    'Taobao': u.indexOf('AliApp(TB') > -1,
-    'Alipay': u.indexOf('AliApp(AP') > -1,
-    'Weibo': u.indexOf('Weibo') > -1,
-    'Douban': u.indexOf('com.douban.frodo') > -1,
-    'Suning': u.indexOf('SNEBUY-APP') > -1,
-    'iQiYi': u.indexOf('IqiyiApp') > -1,
+    TheWorld: u.indexOf('TheWorld') > -1,
+    XiaoMi: u.indexOf('MiuiBrowser') > -1,
+    Quark: u.indexOf('Quark') > -1,
+    Qiyu: u.indexOf('Qiyu') > -1,
+    Wechat: u.indexOf('MicroMessenger') > -1,
+    Taobao: u.indexOf('AliApp(TB') > -1,
+    Alipay: u.indexOf('AliApp(AP') > -1,
+    Weibo: u.indexOf('Weibo') > -1,
+    Douban: u.indexOf('com.douban.frodo') > -1,
+    Suning: u.indexOf('SNEBUY-APP') > -1,
+    iQiYi: u.indexOf('IqiyiApp') > -1,
     //系统或平台
-    'Windows': u.indexOf('Windows') > -1,
-    'Linux': u.indexOf('Linux') > -1 || u.indexOf('X11') > -1,
+    Windows: u.indexOf('Windows') > -1,
+    Linux: u.indexOf('Linux') > -1 || u.indexOf('X11') > -1,
     'Mac OS': u.indexOf('Macintosh') > -1,
-    'Android': u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
-    'Ubuntu': u.indexOf('Ubuntu') > -1,
-    'FreeBSD': u.indexOf('FreeBSD') > -1,
-    'Debian': u.indexOf('Debian') > -1,
+    Android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1,
+    Ubuntu: u.indexOf('Ubuntu') > -1,
+    FreeBSD: u.indexOf('FreeBSD') > -1,
+    Debian: u.indexOf('Debian') > -1,
     'Windows Phone': u.indexOf('IEMobile') > -1 || u.indexOf('Windows Phone') > -1,
-    'BlackBerry': u.indexOf('BlackBerry') > -1 || u.indexOf('RIM') > -1,
-    'MeeGo': u.indexOf('MeeGo') > -1,
-    'Symbian': u.indexOf('Symbian') > -1,
-    'iOS': u.indexOf('like Mac OS X') > -1,
+    BlackBerry: u.indexOf('BlackBerry') > -1 || u.indexOf('RIM') > -1,
+    MeeGo: u.indexOf('MeeGo') > -1,
+    Symbian: u.indexOf('Symbian') > -1,
+    iOS: u.indexOf('like Mac OS X') > -1,
     'Chrome OS': u.indexOf('CrOS') > -1,
-    'WebOS': u.indexOf('hpwOS') > -1,
+    WebOS: u.indexOf('hpwOS') > -1,
     //设备
-    'Mobile': u.indexOf('Mobi') > -1 || u.indexOf('iPh') > -1 || u.indexOf('480') > -1,
-    'Tablet': u.indexOf('Tablet') > -1 || u.indexOf('Pad') > -1 || u.indexOf('Nexus 7') > -1
+    Mobile: u.indexOf('Mobi') > -1 || u.indexOf('iPh') > -1 || u.indexOf('480') > -1,
+    Tablet: u.indexOf('Tablet') > -1 || u.indexOf('Pad') > -1 || u.indexOf('Nexus 7') > -1
   };
   var is360 = false;
   if (_window.chrome) {
@@ -569,13 +569,13 @@ function Browser() {
     if (chrome_vision > 36 && _window.showModalDialog) {
       is360 = true;
     } else if (chrome_vision > 45) {
-      is360 = _mime("type", "application/vnd.chromium.remoting-viewer");
+      is360 = _mime('type', 'application/vnd.chromium.remoting-viewer');
     }
   } //修正
   if (match['Mobile']) {
     match['Mobile'] = !(u.indexOf('iPad') > -1);
   } else if (is360) {
-    if (_mime("type", "application/gameplugin")) {
+    if (_mime('type', 'application/gameplugin')) {
       match['360SE'] = true;
     } else {
       match['360EE'] = true;
@@ -627,7 +627,7 @@ function Browser() {
     }
   } //系统版本信息
   var osVersion = {
-    'Windows': function Windows() {
+    Windows: function Windows() {
       var v = u.replace(/^.*Windows NT ([\d.]+);.*$/, '$1');
       var hash = {
         '6.4': '10',
@@ -641,13 +641,13 @@ function Browser() {
       };
       return hash[v] || v;
     },
-    'Android': function Android() {
+    Android: function Android() {
       return u.replace(/^.*Android ([\d.]+);.*$/, '$1');
     },
-    'iOS': function iOS() {
+    iOS: function iOS() {
       return u.replace(/^.*OS ([\d_]+) like.*$/, '$1').replace(/_/g, '.');
     },
-    'Debian': function Debian() {
+    Debian: function Debian() {
       return u.replace(/^.*Debian\/([\d.]+).*$/, '$1');
     },
     'Windows Phone': function WindowsPhone() {
@@ -656,7 +656,7 @@ function Browser() {
     'Mac OS': function MacOS() {
       return u.replace(/^.*Mac OS X ([\d_]+).*$/, '$1').replace(/_/g, '.');
     },
-    'WebOS': function WebOS() {
+    WebOS: function WebOS() {
       return u.replace(/^.*hpwOS\/([\d.]+);.*$/, '$1');
     }
   };
@@ -668,64 +668,64 @@ function Browser() {
     }
   } //浏览器版本信息
   var version = {
-    'Safari': function Safari() {
+    Safari: function Safari() {
       return u.replace(/^.*Version\/([\d.]+).*$/, '$1');
     },
-    'Chrome': function Chrome() {
+    Chrome: function Chrome() {
       return u.replace(/^.*Chrome\/([\d.]+).*$/, '$1').replace(/^.*CriOS\/([\d.]+).*$/, '$1');
     },
-    'IE': function IE() {
+    IE: function IE() {
       return u.replace(/^.*MSIE ([\d.]+).*$/, '$1').replace(/^.*rv:([\d.]+).*$/, '$1');
     },
-    'Edge': function Edge() {
+    Edge: function Edge() {
       return u.replace(/^.*Edge\/([\d.]+).*$/, '$1');
     },
-    'Firefox': function Firefox() {
+    Firefox: function Firefox() {
       return u.replace(/^.*Firefox\/([\d.]+).*$/, '$1').replace(/^.*FxiOS\/([\d.]+).*$/, '$1');
     },
     'Firefox Focus': function FirefoxFocus() {
       return u.replace(/^.*Focus\/([\d.]+).*$/, '$1');
     },
-    'Chromium': function Chromium() {
+    Chromium: function Chromium() {
       return u.replace(/^.*Chromium\/([\d.]+).*$/, '$1');
     },
-    'Opera': function Opera() {
+    Opera: function Opera() {
       return u.replace(/^.*Opera\/([\d.]+).*$/, '$1').replace(/^.*OPR\/([\d.]+).*$/, '$1');
     },
-    'Vivaldi': function Vivaldi() {
+    Vivaldi: function Vivaldi() {
       return u.replace(/^.*Vivaldi\/([\d.]+).*$/, '$1');
     },
-    'Yandex': function Yandex() {
+    Yandex: function Yandex() {
       return u.replace(/^.*YaBrowser\/([\d.]+).*$/, '$1');
     },
-    'Arora': function Arora() {
+    Arora: function Arora() {
       return u.replace(/^.*Arora\/([\d.]+).*$/, '$1');
     },
-    'Lunascape': function Lunascape() {
+    Lunascape: function Lunascape() {
       return u.replace(/^.*Lunascape[\/\s]([\d.]+).*$/, '$1');
     },
-    'QupZilla': function QupZilla() {
+    QupZilla: function QupZilla() {
       return u.replace(/^.*QupZilla[\/\s]([\d.]+).*$/, '$1');
     },
     'Coc Coc': function CocCoc() {
       return u.replace(/^.*coc_coc_browser\/([\d.]+).*$/, '$1');
     },
-    'Kindle': function Kindle() {
+    Kindle: function Kindle() {
       return u.replace(/^.*Version\/([\d.]+).*$/, '$1');
     },
-    'Iceweasel': function Iceweasel() {
+    Iceweasel: function Iceweasel() {
       return u.replace(/^.*Iceweasel\/([\d.]+).*$/, '$1');
     },
-    'Konqueror': function Konqueror() {
+    Konqueror: function Konqueror() {
       return u.replace(/^.*Konqueror\/([\d.]+).*$/, '$1');
     },
-    'Iceape': function Iceape() {
+    Iceape: function Iceape() {
       return u.replace(/^.*Iceape\/([\d.]+).*$/, '$1');
     },
-    'SeaMonkey': function SeaMonkey() {
+    SeaMonkey: function SeaMonkey() {
       return u.replace(/^.*SeaMonkey\/([\d.]+).*$/, '$1');
     },
-    'Epiphany': function Epiphany() {
+    Epiphany: function Epiphany() {
       return u.replace(/^.*Epiphany\/([\d.]+).*$/, '$1');
     },
     '360': function _() {
@@ -753,25 +753,25 @@ function Browser() {
       var chrome_vision = u.replace(/^.*Chrome\/([\d]+).*$/, '$1');
       return hash[chrome_vision] || '';
     },
-    'Maxthon': function Maxthon() {
+    Maxthon: function Maxthon() {
       return u.replace(/^.*Maxthon\/([\d.]+).*$/, '$1');
     },
-    'QQBrowser': function QQBrowser() {
+    QQBrowser: function QQBrowser() {
       return u.replace(/^.*QQBrowser\/([\d.]+).*$/, '$1');
     },
-    'QQ': function QQ() {
+    QQ: function QQ() {
       return u.replace(/^.*QQ\/([\d.]+).*$/, '$1');
     },
-    'Baidu': function Baidu() {
+    Baidu: function Baidu() {
       return u.replace(/^.*BIDUBrowser[\s\/]([\d.]+).*$/, '$1');
     },
-    'UC': function UC() {
+    UC: function UC() {
       return u.replace(/^.*UC?Browser\/([\d.]+).*$/, '$1');
     },
-    'Sogou': function Sogou() {
+    Sogou: function Sogou() {
       return u.replace(/^.*SE ([\d.X]+).*$/, '$1').replace(/^.*SogouMobileBrowser\/([\d.]+).*$/, '$1');
     },
-    'LBBROWSER': function LBBROWSER() {
+    LBBROWSER: function LBBROWSER() {
       var hash = {
         '57': '6.5',
         '49': '6.0',
@@ -788,37 +788,37 @@ function Browser() {
     '2345Explorer': function Explorer() {
       return u.replace(/^.*2345Explorer\/([\d.]+).*$/, '$1');
     },
-    'TheWorld': function TheWorld() {
+    TheWorld: function TheWorld() {
       return u.replace(/^.*TheWorld ([\d.]+).*$/, '$1');
     },
-    'XiaoMi': function XiaoMi() {
+    XiaoMi: function XiaoMi() {
       return u.replace(/^.*MiuiBrowser\/([\d.]+).*$/, '$1');
     },
-    'Quark': function Quark() {
+    Quark: function Quark() {
       return u.replace(/^.*Quark\/([\d.]+).*$/, '$1');
     },
-    'Qiyu': function Qiyu() {
+    Qiyu: function Qiyu() {
       return u.replace(/^.*Qiyu\/([\d.]+).*$/, '$1');
     },
-    'Wechat': function Wechat() {
+    Wechat: function Wechat() {
       return u.replace(/^.*MicroMessenger\/([\d.]+).*$/, '$1');
     },
-    'Taobao': function Taobao() {
+    Taobao: function Taobao() {
       return u.replace(/^.*AliApp\(TB\/([\d.]+).*$/, '$1');
     },
-    'Alipay': function Alipay() {
+    Alipay: function Alipay() {
       return u.replace(/^.*AliApp\(AP\/([\d.]+).*$/, '$1');
     },
-    'Weibo': function Weibo() {
+    Weibo: function Weibo() {
       return u.replace(/^.*weibo__([\d.]+).*$/, '$1');
     },
-    'Douban': function Douban() {
+    Douban: function Douban() {
       return u.replace(/^.*com.douban.frodo\/([\d.]+).*$/, '$1');
     },
-    'Suning': function Suning() {
+    Suning: function Suning() {
       return u.replace(/^.*SNEBUY-APP([\d.]+).*$/, '$1');
     },
-    'iQiYi': function iQiYi() {
+    iQiYi: function iQiYi() {
       return u.replace(/^.*IqiyiVersion\/([\d.]+).*$/, '$1');
     }
   };
@@ -984,7 +984,7 @@ var m = function m(t) {
     y = function y(t, e, n) {
   var r;
   if (!t) return null;
-  if ("string" == typeof t) l[t] && (r = t), e && (l[t] = e, r = t);else {
+  if ('string' == typeof t) l[t] && (r = t), e && (l[t] = e, r = t);else {
     var s = t.name;
     l[s] = t, r = s;
   }
@@ -1009,7 +1009,7 @@ var D = function () {
   var d = h.prototype;
   return d.parse = function (t) {
     var e, n;
-    this.$d = null === (e = t.date) ? new Date(NaN) : p.isUndefined(e) ? new Date() : e instanceof Date ? e : "string" == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c)) ? new Date(n[1], n[2] - 1, n[3] || 1, n[5] || 0, n[6] || 0, n[7] || 0, n[8] || 0) : new Date(e), this.init(t);
+    this.$d = null === (e = t.date) ? new Date(NaN) : p.isUndefined(e) ? new Date() : e instanceof Date ? e : 'string' == typeof e && /.*[^Z]$/i.test(e) && (n = e.match(c)) ? new Date(n[1], n[2] - 1, n[3] || 1, n[5] || 0, n[6] || 0, n[7] || 0, n[8] || 0) : new Date(e), this.init(t);
   }, d.init = function (t) {
     this.$y = this.$d.getFullYear(), this.$M = this.$d.getMonth(), this.$D = this.$d.getDate(), this.$W = this.$d.getDay(), this.$H = this.$d.getHours(), this.$m = this.$d.getMinutes(), this.$s = this.$d.getSeconds(), this.$ms = this.$d.getMilliseconds(), this.$L = this.$L || y(t.locale, null, !0) || f;
   }, d.$locale = function () {
@@ -1100,11 +1100,11 @@ var qs = createCommonjsModule(function (module, exports) {
         function o(i, f) {
           if (!n[i]) {
             if (!e[i]) {
-              var c = "function" == typeof commonjsRequire && commonjsRequire;
+              var c = 'function' == typeof commonjsRequire && commonjsRequire;
               if (!f && c) return c(i, !0);
               if (u) return u(i, !0);
-              var a = new Error("Cannot find module '" + i + "'");
-              throw a.code = "MODULE_NOT_FOUND", a;
+              var a = new Error('Cannot find module "' + i + '"');
+              throw a.code = 'MODULE_NOT_FOUND', a;
             }
             var p = n[i] = {
               exports: {}
@@ -1116,7 +1116,7 @@ var qs = createCommonjsModule(function (module, exports) {
           }
           return n[i].exports;
         }
-        for (var u = "function" == typeof commonjsRequire && commonjsRequire, i = 0; i < t.length; i++) {
+        for (var u = 'function' == typeof commonjsRequire && commonjsRequire, i = 0; i < t.length; i++) {
           o(t[i]);
         }
         return o;
@@ -1127,7 +1127,7 @@ var qs = createCommonjsModule(function (module, exports) {
         var replace = String.prototype.replace;
         var percentTwenties = /%20/g;
         module.exports = {
-          'default': 'RFC3986',
+          default: 'RFC3986',
           formatters: {
             RFC1738: function RFC1738(value) {
               return replace.call(value, percentTwenties, '+');
@@ -1150,9 +1150,9 @@ var qs = createCommonjsModule(function (module, exports) {
           stringify: stringify
         };
       }, {
-        "./formats": 1,
-        "./parse": 3,
-        "./stringify": 4
+        './formats': 1,
+        './parse': 3,
+        './stringify': 4
       }],
       3: [function (require, module, exports) {
         var utils = require('./utils');
@@ -1328,7 +1328,7 @@ var qs = createCommonjsModule(function (module, exports) {
           return utils.compact(obj);
         };
       }, {
-        "./utils": 5
+        './utils': 5
       }],
       4: [function (require, module, exports) {
         var utils = require('./utils');
@@ -1490,8 +1490,8 @@ var qs = createCommonjsModule(function (module, exports) {
           return joined.length > 0 ? prefix + joined : '';
         };
       }, {
-        "./formats": 1,
-        "./utils": 5
+        './formats': 1,
+        './utils': 5
       }],
       5: [function (require, module, exports) {
         var has = Object.prototype.hasOwnProperty;
@@ -1606,13 +1606,13 @@ var qs = createCommonjsModule(function (module, exports) {
           var out = '';
           for (var i = 0; i < string.length; ++i) {
             var c = string.charCodeAt(i);
-            if (c === 0x2D // -
-            || c === 0x2E // .
-            || c === 0x5F // _
-            || c === 0x7E // ~
-            || c >= 0x30 && c <= 0x39 // 0-9
-            || c >= 0x41 && c <= 0x5A // a-z
-            || c >= 0x61 && c <= 0x7A // A-Z
+            if (c === 0x2d || // -
+            c === 0x2e || // .
+            c === 0x5f || // _
+            c === 0x7e || // ~
+            c >= 0x30 && c <= 0x39 || // 0-9
+            c >= 0x41 && c <= 0x5a || // a-z
+            c >= 0x61 && c <= 0x7a // A-Z
             ) {
                 out += string.charAt(i);
                 continue;
@@ -1622,16 +1622,16 @@ var qs = createCommonjsModule(function (module, exports) {
               continue;
             }
             if (c < 0x800) {
-              out = out + (hexTable[0xC0 | c >> 6] + hexTable[0x80 | c & 0x3F]);
+              out = out + (hexTable[0xc0 | c >> 6] + hexTable[0x80 | c & 0x3f]);
               continue;
             }
-            if (c < 0xD800 || c >= 0xE000) {
-              out = out + (hexTable[0xE0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F]);
+            if (c < 0xd800 || c >= 0xe000) {
+              out = out + (hexTable[0xe0 | c >> 12] + hexTable[0x80 | c >> 6 & 0x3f] + hexTable[0x80 | c & 0x3f]);
               continue;
             }
             i += 1;
-            c = 0x10000 + ((c & 0x3FF) << 10 | string.charCodeAt(i) & 0x3FF);
-            out += hexTable[0xF0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3F] + hexTable[0x80 | c >> 6 & 0x3F] + hexTable[0x80 | c & 0x3F];
+            c = 0x10000 + ((c & 0x3ff) << 10 | string.charCodeAt(i) & 0x3ff);
+            out += hexTable[0xf0 | c >> 18] + hexTable[0x80 | c >> 12 & 0x3f] + hexTable[0x80 | c >> 6 & 0x3f] + hexTable[0x80 | c & 0x3f];
           }
           return out;
         };
@@ -1789,7 +1789,9 @@ var freeGlobal = (typeof global === "undefined" ? "undefined" : _typeof(global))
 /** Detect free variable `self`. */
 var freeSelf = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
+/* eslint-disable */
 var root = freeGlobal || freeSelf || Function('return this')();
+/* eslint-enable */
 /** Detect free variable `exports`. */
 var freeExports = (typeof exports === "undefined" ? "undefined" : _typeof(exports)) == 'object' && exports && !exports.nodeType && exports;
 /** Detect free variable `module`. */
@@ -2187,9 +2189,9 @@ function MapCache(entries) {
  */
 function mapCacheClear() {
   this.__data__ = {
-    'hash': new Hash(),
-    'map': new (Map$1 || ListCache)(),
-    'string': new Hash()
+    hash: new Hash(),
+    map: new (Map$1 || ListCache)(),
+    string: new Hash()
   };
 }
 /**
@@ -3240,7 +3242,9 @@ var freeGlobal$1 = (typeof global === "undefined" ? "undefined" : _typeof(global
 /** Detect free variable `self`. */
 var freeSelf$1 = (typeof self === "undefined" ? "undefined" : _typeof(self)) === 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
+/* eslint-disable */
 var root$1 = freeGlobal$1 || freeSelf$1 || Function('return this')();
+/* eslint-enable */
 /** Detect free variable `exports`. */
 var freeExports$1 = (typeof exports === "undefined" ? "undefined" : _typeof(exports)) === 'object' && exports && !exports.nodeType && exports;
 /** Detect free variable `module`. */
@@ -3686,9 +3690,9 @@ function MapCache$1(entries) {
  */
 function mapCacheClear$1() {
   this.__data__ = {
-    'hash': new Hash$1(),
-    'map': new (Map$2 || ListCache$1)(),
-    'string': new Hash$1()
+    hash: new Hash$1(),
+    map: new (Map$2 || ListCache$1)(),
+    string: new Hash$1()
   };
 }
 /**
@@ -4861,13 +4865,13 @@ function typeOf(input) {
  *   dtc.util.cookieSet('cookieName','value',expires)
  */
 function cookieSet(name, value, days) {
-  var expires = "";
+  var expires = '';
   if (days) {
     var date = new Date();
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = "; expires=" + date.toGMTString();
+    expires = '; expires=' + date.toGMTString();
   }
-  document.cookie = name + "=" + value + expires + "; path=/";
+  document.cookie = name + '=' + value + expires + '; path=/';
 }
 
 /**
@@ -4879,7 +4883,7 @@ function cookieSet(name, value, days) {
  *   dtc.util.cookieDel('cookieName')
  */
 function cookieDel(name) {
-  cookieSet(name, "", -1);
+  cookieSet(name, '', -1);
 }
 
 /**
@@ -4891,7 +4895,7 @@ function cookieDel(name) {
  *   dtc.util.cookieGet('cookieName')
  */
 function cookieGet(name) {
-  var nameEQ = name + "=";
+  var nameEQ = name + '=';
   var ca = document.cookie.split(';');
   for (var i = 0; i < ca.length; i++) {
     var c = ca[i];
@@ -4940,7 +4944,7 @@ function trim(str) {
     default:
       reg = rega;
   }
-  return str.replace(reg, "");
+  return str.replace(reg, '');
 }
 
 var Lab62 =
@@ -4950,9 +4954,9 @@ function () {
     _classCallCheck(this, Lab62);
     // Init delegate
     this.delegate = {
-      b62char: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
-      b62string: ""
-    }; // Init generator
+      b62char: '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+      b62string: '' // Init generator
+    };
     this.generator = function (length) {
       // Run loop specified times
       for (var i = 0; i < length; i++) {
@@ -5023,7 +5027,7 @@ function rgbToHex(input) {
 function hexToRgb(input) {
   var output = [];
   input = input.replace(/^[#]?(?:([0-9a-f]{6})|([0-9a-f]{3}))$/i, function (match, group1, group2) {
-    return group1 ? group1 : group2.replace(/([0-9a-f])/ig, '$1$1');
+    return group1 ? group1 : group2.replace(/([0-9a-f])/gi, '$1$1');
   });
   if (input.length === 6) {
     for (var i = 0; i < 3; i++) {
@@ -5103,7 +5107,9 @@ var freeGlobal$2 = (typeof global === "undefined" ? "undefined" : _typeof(global
 /** Detect free variable `self`. */
 var freeSelf$2 = (typeof self === "undefined" ? "undefined" : _typeof(self)) == 'object' && self && self.Object === Object && self;
 /** Used as a reference to the global object. */
+/* eslint-disable */
 var root$2 = freeGlobal$2 || freeSelf$2 || Function('return this')();
+/* eslint-enable */
 /** Used for built-in method references. */
 var objectProto$4 = Object.prototype;
 /** Used to check objects for own properties. */
@@ -5541,8 +5547,8 @@ var Detector = {
     element = Detector.getWebGLErrorMessage();
     element.id = id;
     parent.appendChild(element);
-  }
-}; // "undefined" != typeof module && module.exports && (module.exports = Detector);
+  } // "undefined" != typeof module && module.exports && (module.exports = Detector);
+};
 
 /**
  * @author qiao / https://github.com/qiao
@@ -5594,13 +5600,13 @@ function OrbitControls(object, domElement) {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    BOTTOM: 40
-  }; // Mouse buttons
+    BOTTOM: 40 // Mouse buttons
+  };
   this.mouseButtons = {
     ORBIT: MOUSE.LEFT,
     ZOOM: MOUSE.MIDDLE,
-    PAN: MOUSE.RIGHT
-  }; // for reset
+    PAN: MOUSE.RIGHT // for reset
+  };
   this.target0 = this.target.clone();
   this.position0 = this.object.position.clone();
   this.zoom0 = this.object.zoom; //
@@ -5682,9 +5688,7 @@ function OrbitControls(object, domElement) {
     document.removeEventListener('mousemove', onMouseMove, false);
     document.removeEventListener('mouseup', onMouseUp, false);
     window.removeEventListener('keydown', onKeyDown, false); //scope.dispatchEvent( { type: 'dispose' } ); // should this be added here?
-  }; //
-  // internals
-  //
+  }; // internals
   var scope = this;
   var changeEvent = {
     type: 'change'
@@ -5840,7 +5844,6 @@ function OrbitControls(object, domElement) {
     scope.update();
   }
   function handleMouseWheel(event) {
-    // console.log( 'handleMouseWheel' );
     if (event.deltaY < 0) {
       dollyOut(getZoomScale());
     } else if (event.deltaY > 0) {
@@ -5849,7 +5852,6 @@ function OrbitControls(object, domElement) {
     scope.update();
   }
   function handleKeyDown(event) {
-    //console.log( 'handleKeyDown' );
     switch (event.keyCode) {
       case scope.keys.UP:
         pan(0, scope.keyPanSpeed);
@@ -5870,32 +5872,27 @@ function OrbitControls(object, domElement) {
     }
   }
   function handleTouchStartRotate(event) {
-    //console.log( 'handleTouchStartRotate' );
     rotateStart.set(event.touches[0].pageX, event.touches[0].pageY);
   }
   function handleTouchStartDolly(event) {
-    //console.log( 'handleTouchStartDolly' );
     var dx = event.touches[0].pageX - event.touches[1].pageX;
     var dy = event.touches[0].pageY - event.touches[1].pageY;
     var distance = Math.sqrt(dx * dx + dy * dy);
     dollyStart.set(0, distance);
   }
   function handleTouchStartPan(event) {
-    //console.log( 'handleTouchStartPan' );
     panStart.set(event.touches[0].pageX, event.touches[0].pageY);
   }
   function handleTouchMoveRotate(event) {
-    //console.log( 'handleTouchMoveRotate' );
     rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
     rotateDelta.subVectors(rotateEnd, rotateStart);
-    var element = scope.domElement === document ? scope.domElement.body : scope.domElement; // rotating across whole screen goes 360 degrees around
+    var element = scope.domElement === document ? scope.domElement.body : scope.domElement;
     rotateLeft(2 * Math.PI * rotateDelta.x / element.clientWidth * scope.rotateSpeed); // rotating up and down along whole screen attempts to go 360, but limited to 180
     rotateUp(2 * Math.PI * rotateDelta.y / element.clientHeight * scope.rotateSpeed);
     rotateStart.copy(rotateEnd);
     scope.update();
   }
   function handleTouchMoveDolly(event) {
-    //console.log( 'handleTouchMoveDolly' );
     var dx = event.touches[0].pageX - event.touches[1].pageX;
     var dy = event.touches[0].pageY - event.touches[1].pageY;
     var distance = Math.sqrt(dx * dx + dy * dy);
@@ -5910,16 +5907,12 @@ function OrbitControls(object, domElement) {
     scope.update();
   }
   function handleTouchMovePan(event) {
-    //console.log( 'handleTouchMovePan' );
     panEnd.set(event.touches[0].pageX, event.touches[0].pageY);
     panDelta.subVectors(panEnd, panStart);
     pan(panDelta.x, panDelta.y);
     panStart.copy(panEnd);
     scope.update();
   }
-  //
-  // event handlers - FSM: listen for events and reset state
-  //
   function onMouseDown(event) {
     if (scope.enabled === false) return;
     event.preventDefault();
@@ -6237,7 +6230,7 @@ void 0 === Date.now && (Date.now = function () {
 var TWEEN = TWEEN || function () {
   var n = [];
   return {
-    REVISION: "14",
+    REVISION: '14',
     getAll: function getAll() {
       return n;
     },
@@ -6254,7 +6247,7 @@ var TWEEN = TWEEN || function () {
     update: function update(t) {
       if (0 === n.length) return !1;
       var r = 0;
-      for (t = void 0 !== t ? t : "undefined" != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(); r < n.length;) {
+      for (t = void 0 !== t ? t : 'undefined' != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(); r < n.length;) {
         n[r].update(t) ? r++ : n.splice(r, 1);
       }
       return !0;
@@ -6286,7 +6279,7 @@ TWEEN.Tween = function (n) {
   this.to = function (n, t) {
     return void 0 !== t && (o = t), i = n, this;
   }, this.start = function (n) {
-    TWEEN.add(this), f = !0, v = !1, h = void 0 !== n ? n : "undefined" != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(), h += s;
+    TWEEN.add(this), f = !0, v = !1, h = void 0 !== n ? n : 'undefined' != typeof window && void 0 !== window.performance && void 0 !== window.performance.now ? window.performance.now() : Date.now(), h += s;
     for (var o in i) {
       if (i[o] instanceof Array) {
         if (0 === i[o].length) continue;
@@ -6331,13 +6324,13 @@ TWEEN.Tween = function (n) {
     for (f in i) {
       var m = r[f] || 0,
           N = i[f];
-      N instanceof Array ? t[f] = p(N, O) : ("string" == typeof N && (N = m + parseFloat(N, 10)), "number" == typeof N && (t[f] = m + (N - m) * O));
+      N instanceof Array ? t[f] = p(N, O) : ('string' == typeof N && (N = m + parseFloat(N, 10)), 'number' == typeof N && (t[f] = m + (N - m) * O));
     }
     if (null !== I && I.call(t, O), 1 == M) {
       if (e > 0) {
         isFinite(e) && e--;
         for (f in u) {
-          if ("string" == typeof i[f] && (u[f] = u[f] + parseFloat(i[f], 10)), a) {
+          if ('string' == typeof i[f] && (u[f] = u[f] + parseFloat(i[f], 10)), a) {
             var T = u[f];
             u[f] = i[f], i[f] = T;
           }
@@ -6367,7 +6360,7 @@ TWEEN.Tween = function (n) {
       return n * (2 - n);
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n : -.5 * (--n * (n - 2) - 1);
+      return (n *= 2) < 1 ? 0.5 * n * n : -0.5 * (--n * (n - 2) - 1);
     }
   },
   Cubic: {
@@ -6378,7 +6371,7 @@ TWEEN.Tween = function (n) {
       return --n * n * n + 1;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n : .5 * ((n -= 2) * n * n + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n : 0.5 * ((n -= 2) * n * n + 2);
     }
   },
   Quartic: {
@@ -6389,7 +6382,7 @@ TWEEN.Tween = function (n) {
       return 1 - --n * n * n * n;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n * n : -.5 * ((n -= 2) * n * n * n - 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n * n : -0.5 * ((n -= 2) * n * n * n - 2);
     }
   },
   Quintic: {
@@ -6400,7 +6393,7 @@ TWEEN.Tween = function (n) {
       return --n * n * n * n * n + 1;
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? .5 * n * n * n * n * n : .5 * ((n -= 2) * n * n * n * n + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * n * n * n : 0.5 * ((n -= 2) * n * n * n * n + 2);
     }
   },
   Sinusoidal: {
@@ -6411,7 +6404,7 @@ TWEEN.Tween = function (n) {
       return Math.sin(n * Math.PI / 2);
     },
     InOut: function InOut(n) {
-      return .5 * (1 - Math.cos(Math.PI * n));
+      return 0.5 * (1 - Math.cos(Math.PI * n));
     }
   },
   Exponential: {
@@ -6422,7 +6415,7 @@ TWEEN.Tween = function (n) {
       return 1 === n ? 1 : 1 - Math.pow(2, -10 * n);
     },
     InOut: function InOut(n) {
-      return 0 === n ? 0 : 1 === n ? 1 : (n *= 2) < 1 ? .5 * Math.pow(1024, n - 1) : .5 * (-Math.pow(2, -10 * (n - 1)) + 2);
+      return 0 === n ? 0 : 1 === n ? 1 : (n *= 2) < 1 ? 0.5 * Math.pow(1024, n - 1) : 0.5 * (-Math.pow(2, -10 * (n - 1)) + 2);
     }
   },
   Circular: {
@@ -6433,27 +6426,27 @@ TWEEN.Tween = function (n) {
       return Math.sqrt(1 - --n * n);
     },
     InOut: function InOut(n) {
-      return (n *= 2) < 1 ? -.5 * (Math.sqrt(1 - n * n) - 1) : .5 * (Math.sqrt(1 - (n -= 2) * n) + 1);
+      return (n *= 2) < 1 ? -0.5 * (Math.sqrt(1 - n * n) - 1) : 0.5 * (Math.sqrt(1 - (n -= 2) * n) + 1);
     }
   },
   Elastic: {
     In: function In(n) {
       var t,
-          r = .1,
-          i = .4;
+          r = 0.1,
+          i = 0.4;
       return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), -(r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i)));
     },
     Out: function Out(n) {
       var t,
-          r = .1,
-          i = .4;
+          r = 0.1,
+          i = 0.4;
       return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), r * Math.pow(2, -10 * n) * Math.sin(2 * (n - t) * Math.PI / i) + 1);
     },
     InOut: function InOut(n) {
       var t,
-          r = .1,
-          i = .4;
-      return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), (n *= 2) < 1 ? -.5 * r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) : r * Math.pow(2, -10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) * .5 + 1);
+          r = 0.1,
+          i = 0.4;
+      return 0 === n ? 0 : 1 === n ? 1 : (!r || 1 > r ? (r = 1, t = i / 4) : t = i * Math.asin(1 / r) / (2 * Math.PI), (n *= 2) < 1 ? -0.5 * r * Math.pow(2, 10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) : r * Math.pow(2, -10 * (n -= 1)) * Math.sin(2 * (n - t) * Math.PI / i) * 0.5 + 1);
     }
   },
   Back: {
@@ -6467,7 +6460,7 @@ TWEEN.Tween = function (n) {
     },
     InOut: function InOut(n) {
       var t = 2.5949095;
-      return (n *= 2) < 1 ? .5 * n * n * ((t + 1) * n - t) : .5 * ((n -= 2) * n * ((t + 1) * n + t) + 2);
+      return (n *= 2) < 1 ? 0.5 * n * n * ((t + 1) * n - t) : 0.5 * ((n -= 2) * n * ((t + 1) * n + t) + 2);
     }
   },
   Bounce: {
@@ -6475,10 +6468,10 @@ TWEEN.Tween = function (n) {
       return 1 - TWEEN.Easing.Bounce.Out(1 - n);
     },
     Out: function Out(n) {
-      return 1 / 2.75 > n ? 7.5625 * n * n : 2 / 2.75 > n ? 7.5625 * (n -= 1.5 / 2.75) * n + .75 : 2.5 / 2.75 > n ? 7.5625 * (n -= 2.25 / 2.75) * n + .9375 : 7.5625 * (n -= 2.625 / 2.75) * n + .984375;
+      return 1 / 2.75 > n ? 7.5625 * n * n : 2 / 2.75 > n ? 7.5625 * (n -= 1.5 / 2.75) * n + 0.75 : 2.5 / 2.75 > n ? 7.5625 * (n -= 2.25 / 2.75) * n + 0.9375 : 7.5625 * (n -= 2.625 / 2.75) * n + 0.984375;
     },
     InOut: function InOut(n) {
-      return .5 > n ? .5 * TWEEN.Easing.Bounce.In(2 * n) : .5 * TWEEN.Easing.Bounce.Out(2 * n - 1) + .5;
+      return 0.5 > n ? 0.5 * TWEEN.Easing.Bounce.In(2 * n) : 0.5 * TWEEN.Easing.Bounce.Out(2 * n - 1) + 0.5;
     }
   }
 }, TWEEN.Interpolation = {
@@ -6528,8 +6521,8 @@ TWEEN.Tween = function (n) {
       };
     }(),
     CatmullRom: function CatmullRom(n, t, r, i, u) {
-      var o = .5 * (r - n),
-          e = .5 * (i - t),
+      var o = 0.5 * (r - n),
+          e = 0.5 * (i - t),
           a = u * u,
           f = u * a;
       return (2 * t - 2 * r + o + e) * f + (-3 * t + 3 * r - 2 * o - e) * a + o * u + t;
@@ -6538,22 +6531,22 @@ TWEEN.Tween = function (n) {
 };
 
 function colorToHex(color) {
-  if (typeof color === "string") {
+  if (typeof color === 'string') {
     if (color.indexOf('#') !== -1) color = parseInt(color.replace('#', ''), 16);else color = new Color(color).getHex();
   }
   return color;
 }
 /**
-   * 过渡动画
-   * @param {Object|*} from - 修改的启始值
-   * @param {Object|*} to - 修改的结束值
-   * @param {number} [time] - 完成时间
-   * @param {number} [delay=0] - 延迟时间
-   * @param {Tween.Easing} [easing=TWEEN.Easing.Linear.None] -动画类型
-   * @param {callback} [callback] - 完成回调
-   * @example
-   * $.transition(area.position, {x:0,y:0,z:10}, 1000, 500, TWEEN.Easing.Quartic.Out, callback)
-   */
+ * 过渡动画
+ * @param {Object|*} from - 修改的启始值
+ * @param {Object|*} to - 修改的结束值
+ * @param {number} [time] - 完成时间
+ * @param {number} [delay=0] - 延迟时间
+ * @param {Tween.Easing} [easing=TWEEN.Easing.Linear.None] -动画类型
+ * @param {callback} [callback] - 完成回调
+ * @example
+ * $.transition(area.position, {x:0,y:0,z:10}, 1000, 500, TWEEN.Easing.Quartic.Out, callback)
+ */
 function transition(from, to, time, delay, easing, callback) {
   if (typeof time !== 'number') {
     time = 1000;
@@ -6576,19 +6569,19 @@ var extend = function () {
     '[object Object]': 'object'
   },
       type = function type(obj) {
-    return obj == null ? String(obj) : class2type[toString.call(obj)] || "object";
+    return obj == null ? String(obj) : class2type[toString.call(obj)] || 'object';
   },
       isWindow = function isWindow(obj) {
-    return obj && _typeof(obj) === "object" && "setInterval" in obj;
+    return obj && _typeof(obj) === 'object' && 'setInterval' in obj;
   },
       isArray = Array.isArray || function (obj) {
-    return type(obj) === "array";
+    return type(obj) === 'array';
   },
       isPlainObject = function isPlainObject(obj) {
-    if (!obj || type(obj) !== "object" || obj.nodeType || isWindow(obj)) {
+    if (!obj || type(obj) !== 'object' || obj.nodeType || isWindow(obj)) {
       return false;
     }
-    if (obj.constructor && !hasOwn.call(obj, "constructor") && !hasOwn.call(obj.constructor.prototype, "isPrototypeOf")) {
+    if (obj.constructor && !hasOwn.call(obj, 'constructor') && !hasOwn.call(obj.constructor.prototype, 'isPrototypeOf')) {
       return false;
     }
     var key;
@@ -6603,11 +6596,12 @@ var extend = function () {
         continue;
       }
       if (deep && copy && (isPlainObject(copy) || (copyIsArray = isArray(copy)))) {
+        var clone = void 0;
         if (copyIsArray) {
           copyIsArray = false;
-          var clone = src && isArray(src) ? src : [];
+          clone = src && isArray(src) ? src : [];
         } else {
-          var clone = src && isPlainObject(src) ? src : {};
+          clone = src && isPlainObject(src) ? src : {};
         }
         target[name] = extend(deep, clone, copy);
       } else if (copy !== undefined) {
@@ -6741,9 +6735,9 @@ var stats = createCommonjsModule(function (module) {
     msGraph.style.cssText = 'position:relative;width:74px;height:30px;background-color:#0f0';
     msDiv.appendChild(msGraph);
     while (msGraph.children.length < 74) {
-      var bar = document.createElement('span');
-      bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#131';
-      msGraph.appendChild(bar);
+      var _bar = document.createElement('span');
+      _bar.style.cssText = 'width:1px;height:30px;float:left;background-color:#131';
+      msGraph.appendChild(_bar);
     }
     var setMode = function setMode(value) {
       mode = value;
@@ -6831,7 +6825,7 @@ function (_THREE$Object3D) {
     _classCallCheck(this, Area);
     //调用实现父类的构造函数
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Area).call(this, pros));
-    _this.type = "Area";
+    _this.type = 'Area';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var coords = pros.coords;
@@ -6882,7 +6876,7 @@ function (_THREE$Object3D) {
         });
         return this.getGeoMesh(geo, pros);
       } catch (e) {
-        console.warn("Area.getMesh:" + e.message);
+        console.warn('Area.getMesh:' + e.message);
       }
     }
     /**
@@ -7073,9 +7067,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mouseout', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':out')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':out')
+     *  });
      */
   }, {
     key: "onmouseout",
@@ -7099,9 +7093,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mouseover', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':over')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':over')
+     *  });
      */
   }, {
     key: "onmouseover",
@@ -7127,9 +7121,9 @@ function (_THREE$Object3D) {
      * @example
      *
      * map.addEventListener('mousedown', (event) => {
-       *    let obj = event.target;
-       *    console.log(obj.type+':click')
-       *  });
+     *    let obj = event.target;
+     *    console.log(obj.type+':click')
+     *  });
      */
   }, {
     key: "onmousedown",
@@ -7177,7 +7171,7 @@ function (_THREE$Object3D) {
     var _this;
     _classCallCheck(this, DataRange);
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DataRange).call(this, pros));
-    _this.type = "DataRange";
+    _this.type = 'DataRange';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var boxGeo = new BoxGeometry(pros.width, pros.height, pros.extrudeHeight);
@@ -7308,11 +7302,11 @@ function (_THREE$Sprite) {
      * @example
      *
      * Mark.draw=(ctx)=>{
-       *  context.clearRect(0, 0, 128, 128);
-       *  context.fillStyle = '#ff0000';
-       *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
-       *  context.fill();
-       * }
+     *  context.clearRect(0, 0, 128, 128);
+     *  context.fillStyle = '#ff0000';
+     *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
+     *  context.fill();
+     * }
      */
     value: function draw(context, v) {
       v = v || 1;
@@ -7348,7 +7342,7 @@ function (_THREE$Sprite) {
      */
     get: function get() {
       if (!Mark._texture) {
-        var canvas = document.createElement("canvas");
+        var canvas = document.createElement('canvas');
         canvas.width = 128;
         canvas.height = 128;
         var context = canvas.getContext('2d');
@@ -7369,7 +7363,7 @@ function (_THREE$Sprite) {
       color: pros.color,
       blending: AdditiveBlending
     });
-    _this.type = "Mark";
+    _this.type = 'Mark';
     _this.name = pros.name;
     Object.assign(_this.userData, pros);
     var size = pros.size || _this.userData.min;
@@ -7403,12 +7397,12 @@ function (_THREE$Sprite) {
    * @param {callback} [callback] - 动画完成后回调
    * @example
    *  map.addEventListener('mouseover', (event) => {
-     *    let obj = event.target;
-     *    if(obj.type==='Mark')
-     *    {
-     *      obj.setColor('#ff5555',100);// 鼠标移入设置为红色
-     *    }
-     *  });
+   *    let obj = event.target;
+   *    if(obj.type==='Mark')
+   *    {
+   *      obj.setColor('#ff5555',100);// 鼠标移入设置为红色
+   *    }
+   *  });
    */
   _createClass(Mark, [{
     key: "setColor",
@@ -7431,12 +7425,12 @@ function (_THREE$Sprite) {
      * @example
      *
      * map.addEventListener('mouseover', (event) => {
-       *     let obj = event.target;
-       *     if(obj.type==='Mark')
-       *     {
-       *       obj.setPosition({x:0,y:0,z:4},300) //标注升高
-       *     }
-       *   });
+     *     let obj = event.target;
+     *     if(obj.type==='Mark')
+     *     {
+     *       obj.setPosition({x:0,y:0,z:4},300) //标注升高
+     *     }
+     *   });
      *
      */
   }, {
@@ -7550,34 +7544,34 @@ ShaderLib$1.line = {
       value: null
     }
   },
-  vertexShader: ["uniform float amplitude;", "attribute float size;", "attribute vec3 customColor;", "varying vec3 vColor;", "void main() {", "vColor = customColor;", "vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );", "gl_PointSize = size;", "gl_Position = projectionMatrix * mvPosition;", "}"].join("\n"),
-  fragmentShader: ["uniform vec3 color;", "uniform sampler2D texture;", "varying vec3 vColor;", "void main() {", "gl_FragColor = vec4( color * vColor, 1.0 );", "gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );", "}"].join("\n")
+  vertexShader: ['uniform float amplitude;', 'attribute float size;', 'attribute vec3 customColor;', 'varying vec3 vColor;', 'void main() {', 'vColor = customColor;', 'vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );', 'gl_PointSize = size;', 'gl_Position = projectionMatrix * mvPosition;', '}'].join('\n'),
+  fragmentShader: ['uniform vec3 color;', 'uniform sampler2D texture;', 'varying vec3 vColor;', 'void main() {', 'gl_FragColor = vec4( color * vColor, 1.0 );', 'gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );', '}'].join('\n')
   /**
    * 物体内边缘发光
    */
 };
 ShaderLib$1.edgelight = {
   uniforms: {
-    "s": {
-      type: "f",
+    s: {
+      type: 'f',
       value: -1.0
     },
-    "b": {
-      type: "f",
+    b: {
+      type: 'f',
       value: 1.0
     },
-    "p": {
-      type: "f",
+    p: {
+      type: 'f',
       value: 2.0
     },
     glowColor: {
-      type: "c",
+      type: 'c',
       value: new Color(0x00ffff)
     }
   },
-  vertexShader: ["varying vec3 vNormal;", "varying vec3 vPositionNormal;", "void main() {", "vNormal = normalize( normalMatrix * normal ); ", // 转换到视图空间
-  "vPositionNormal = normalize(( modelViewMatrix * vec4(position, 1.0) ).xyz);", "gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );", "}"].join("\n"),
-  fragmentShader: ["uniform vec3 glowColor;", "uniform float p;", "uniform float b;", "uniform float s;", "varying vec3 vNormal;", "varying vec3 vPositionNormal;", "void main() ", "{", "  float a = pow( b + s * abs(dot(vNormal, vPositionNormal)), p );", "  gl_FragColor = vec4( glowColor, a );", "}"].join("\n")
+  vertexShader: ['varying vec3 vNormal;', 'varying vec3 vPositionNormal;', 'void main() {', 'vNormal = normalize( normalMatrix * normal ); ', // 转换到视图空间
+  'vPositionNormal = normalize(( modelViewMatrix * vec4(position, 1.0) ).xyz);', 'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );', '}'].join('\n'),
+  fragmentShader: ['uniform vec3 glowColor;', 'uniform float p;', 'uniform float b;', 'uniform float s;', 'varying vec3 vNormal;', 'varying vec3 vPositionNormal;', 'void main() ', '{', '  float a = pow( b + s * abs(dot(vNormal, vPositionNormal)), p );', '  gl_FragColor = vec4( glowColor, a );', '}'].join('\n')
   /**
    * 创建着色器材质，根据shader
    * @param {shader} shader  shader in three.ShaderlibExp
@@ -7627,11 +7621,11 @@ function (_THREE$Line) {
      * @example
      *
      * Line.draw=(ctx)=>{
-       *  context.clearRect(0, 0, 128, 128);
-       *  context.fillStyle = '#ff0000';
-       *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
-       *  context.fill();
-       * }
+     *  context.clearRect(0, 0, 128, 128);
+     *  context.fillStyle = '#ff0000';
+     *  context.arc(64, 64, 20, 0, Math.PI * 2, false);
+     *  context.fill();
+     * }
      */
     value: function draw(context) {
       context.clearRect(0, 0, 128, 128);
@@ -7665,7 +7659,7 @@ function (_THREE$Line) {
      */
     get: function get() {
       if (!Line$$1._texture) {
-        var canvas = document.createElement("canvas");
+        var canvas = document.createElement('canvas');
         canvas.width = 128;
         canvas.height = 128;
         var context = canvas.getContext('2d');
@@ -7852,13 +7846,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mouseout', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标移出操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标移出操作
+     *        }
+     *      });
      */
   }, {
     key: "onmouseout",
@@ -7892,13 +7886,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mouseover', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标移入操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标移入操作
+     *        }
+     *      });
      */
   }, {
     key: "onmouseover",
@@ -7933,13 +7927,13 @@ function (_THREE$Line) {
      * @example
      *  // 注册事件
      *  map.addEventListener('mousedown', (event) => {
-       *        let obj = event.target;
-       *
-       *        if(obj.type==='Line')
-       *        {
-       *           // 这里做鼠标单击操作
-       *        }
-       *      });
+     *        let obj = event.target;
+     *
+     *        if(obj.type==='Line')
+     *        {
+     *           // 这里做鼠标单击操作
+     *        }
+     *      });
      */
   }, {
     key: "onmousedown",
@@ -7970,115 +7964,115 @@ var extrudeOption = {
   amount: 1,
   //厚度
   bevelThickness: 1,
-  bevelSize: .2,
+  bevelSize: 0.2,
   bevelEnabled: false,
   bevelSegments: 5,
   curveSegments: 1,
   steps: 1
+  /**
+   * 创建3D地图.
+   * @class
+   * @example
+   * //配置默认值
+   * let opt={
+   *      name:'',                // 调试使用，window['name']为该实例对象，注意设置debugger:true启用
+   *      el:document.body,       // 容器
+   *      geoData:null,           // 地图geojson数据
+   *      hasStats:true,          // 是否显示性能面板
+   *      hasControls:true,       // 用户是否能控制视角
+   *      autoRotate:false,       // 是否自动旋转视角
+   *      ambientColor:0x333333,  // 环境光颜色
+   *      directionalColor:0xffffff,// 平行光颜色
+   *      hasLoadEffect:false,    // 是否有加载效果
+   *      debugger:false,         // 调试模式
+   *      cameraPosition:{x:0,y:0,z:40},// 相机位置
+   *      visualMap:null,         // 直观图图例
+   *      extrude:extrudeOption,  // 立体厚度参数
+   *
+   *      area:{
+   *          data:[],            // 地图用户数据[{ name:'北京', value:, color:0xff3333 }...]
+   *          // area参数默认值
+   *          name:'',            // 区域名称
+   *          color:0x3366ff,     // 地图颜色
+   *          hoverColor:0xff9933,// 鼠标移入颜色
+   *          lineColor:0xffffff, // 线颜色
+   *          opacity:1,          // 地图透明度
+   *          hasPhong:true,      // 是否反光材质
+   *          shininess:50,       // 反光材质光滑度
+   *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
+   *          loadEffect:false,   // 区域加载效果
+   *          hasHoverHeight:true,// 鼠标移入区域升高
+   *      },
+   *
+   *      mark:{
+   *          data:[],            // 标注点数据[{ name:'XXX', coord:[11,22], value:13 }...]
+   *          // mark参数默认值
+   *          name:'',            // 标注名称
+   *          color:0xffffff,     // 标注点颜色
+   *          hoverColor:0xff9933,// 鼠标移入颜色
+   *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
+   *          min:0.01,
+   *          max:5,
+   *      },
+   *
+   *      line:{
+   *          data:[],                        //线数据[{ fromName:'', toName:'', coords:[toCoord, fromCoord] }...]
+   *          // line参数默认值
+   *          color:0x55eeff,                 // 颜色
+   *          hoverColor:0xff9933,            // 鼠标移入颜色
+   *          hoverExclusive:true,            // 鼠标移入排除其他线条
+   *          hoverAnimaTime:100,             // 鼠标移入动画过渡时间
+   *          spaceHeight:5,                  // 曲线空间高度
+   *          hasHalo:true,                   // 是否开启光晕效果
+   *          hasHaloAnimate:true,            // 是否开启光晕动画效果
+   *          haloDensity:2,                  // 光点密度 值越大 越浓密，越消耗性能
+   *          haloRunRate:0.01,               // 光点运动频率
+   *          haloColor:0xffffff,             // 默认继承color颜色[不建议修改]
+   *          haloSize:10,                    // 光晕大小
+   *          decayColor:0x222222,            // 未激活线条颜色
+   *      },
+   *
+   *      //内置对象
+   *      mapObject:null,     // 地图对象
+   *      areaGroup:null,     // 区域组
+   *      lineGroup:null,     // 线条组
+   *      markGroup:null,     // 标记组
+   *      scene:null,         // 场景对象
+   *      camera:null,        // 相机对象
+   *      renderer:null,      // 渲染器对象
+   *      stats:null,         // 性能对象
+   *      controls:null,      // 控制器对象
+   *      _w:0,               // 呈现宽度
+   *      _h:0,               // 呈现高度
+   *      __event:null,        // 事件对象
+   *  }
+   *
+   * let map = new Map3D(opt);
+   *
+   * //事件注册
+   *   map.addEventListener('mousedown', function (event) {
+   *        let obj = event.target;
+   *        if(obj.type==='Area') //type='Area|Line|Mark'
+   *          obj.setColor('#ff6666', 500);
+   *      });
+   *
+   *   map.addEventListener('mouseout', (event) => {
+   *        let obj = event.target;
+   *        console.log(obj.type+':out')
+   *      });
+   *
+   *   map.addEventListener('mouseover', (event) => {
+   *        let obj = event.target;
+   *        console.log(obj.userData.name);
+   *        //self.mapTitlePositon.left = $(window).scrollLeft() + event.clientX + 20 + 'px';
+   *        //self.mapTitlePositon.top = $(window).scrollTop() + event.clientY + 20 + 'px';
+   *      })
+   *
+   *   map.addEventListener('resize', function (event) {
+   *        console.log('resize...');
+   *      });
+   */
 };
-/**
- * 创建3D地图.
- * @class
- * @example
- * //配置默认值
- * let opt={
- *      name:'',                // 调试使用，window['name']为该实例对象，注意设置debugger:true启用
- *      el:document.body,       // 容器
- *      geoData:null,           // 地图geojson数据
- *      hasStats:true,          // 是否显示性能面板
- *      hasControls:true,       // 用户是否能控制视角
- *      autoRotate:false,       // 是否自动旋转视角
- *      ambientColor:0x333333,  // 环境光颜色
- *      directionalColor:0xffffff,// 平行光颜色
- *      hasLoadEffect:false,    // 是否有加载效果
- *      debugger:false,         // 调试模式
- *      cameraPosition:{x:0,y:0,z:40},// 相机位置
- *      visualMap:null,         // 直观图图例
- *      extrude:extrudeOption,  // 立体厚度参数
- *
- *      area:{
- *          data:[],            // 地图用户数据[{ name:'北京', value:, color:0xff3333 }...]
- *          // area参数默认值
- *          name:'',            // 区域名称
- *          color:0x3366ff,     // 地图颜色
- *          hoverColor:0xff9933,// 鼠标移入颜色
- *          lineColor:0xffffff, // 线颜色
- *          opacity:1,          // 地图透明度
- *          hasPhong:true,      // 是否反光材质
- *          shininess:50,       // 反光材质光滑度
- *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
- *          loadEffect:false,   // 区域加载效果
- *          hasHoverHeight:true,// 鼠标移入区域升高
- *      },
- *
- *      mark:{
- *          data:[],            // 标注点数据[{ name:'XXX', coord:[11,22], value:13 }...]
- *          // mark参数默认值
- *          name:'',            // 标注名称
- *          color:0xffffff,     // 标注点颜色
- *          hoverColor:0xff9933,// 鼠标移入颜色
- *          hoverAnimaTime:100, // 鼠标移入动画过渡时间
- *          min:0.01,
- *          max:5,
- *      },
- *
- *      line:{
- *          data:[],                        //线数据[{ fromName:'', toName:'', coords:[toCoord, fromCoord] }...]
- *          // line参数默认值
- *          color:0x55eeff,                 // 颜色
- *          hoverColor:0xff9933,            // 鼠标移入颜色
- *          hoverExclusive:true,            // 鼠标移入排除其他线条
- *          hoverAnimaTime:100,             // 鼠标移入动画过渡时间
- *          spaceHeight:5,                  // 曲线空间高度
- *          hasHalo:true,                   // 是否开启光晕效果
- *          hasHaloAnimate:true,            // 是否开启光晕动画效果
- *          haloDensity:2,                  // 光点密度 值越大 越浓密，越消耗性能
- *          haloRunRate:0.01,               // 光点运动频率
- *          haloColor:0xffffff,             // 默认继承color颜色[不建议修改]
- *          haloSize:10,                    // 光晕大小
- *          decayColor:0x222222,            // 未激活线条颜色
- *      },
- *
- *      //内置对象
- *      mapObject:null,     // 地图对象
- *      areaGroup:null,     // 区域组
- *      lineGroup:null,     // 线条组
- *      markGroup:null,     // 标记组
- *      scene:null,         // 场景对象
- *      camera:null,        // 相机对象
- *      renderer:null,      // 渲染器对象
- *      stats:null,         // 性能对象
- *      controls:null,      // 控制器对象
- *      _w:0,               // 呈现宽度
- *      _h:0,               // 呈现高度
- *      __event:null,        // 事件对象
- *  }
- *
- * let map = new Map3D(opt);
- *
- * //事件注册
- *   map.addEventListener('mousedown', function (event) {
- *        let obj = event.target;
- *        if(obj.type==='Area') //type='Area|Line|Mark'
- *          obj.setColor('#ff6666', 500);
- *      });
- *
- *   map.addEventListener('mouseout', (event) => {
- *        let obj = event.target;
- *        console.log(obj.type+':out')
- *      });
- *
- *   map.addEventListener('mouseover', (event) => {
- *        let obj = event.target;
- *        console.log(obj.userData.name);
- *        //self.mapTitlePositon.left = $(window).scrollLeft() + event.clientX + 20 + 'px';
- *        //self.mapTitlePositon.top = $(window).scrollTop() + event.clientY + 20 + 'px';
- *      })
- *
- *   map.addEventListener('resize', function (event) {
- *        console.log('resize...');
- *      });
- */
 var Map3D =
 /*#__PURE__*/
 function () {
@@ -8239,9 +8233,7 @@ function () {
     }
     this._w = this.el.offsetWidth;
     this._h = this.el.offsetHeight;
-    console.time('init');
     this.init();
-    console.timeEnd('init');
     this.initEvent();
   }
   /**
@@ -8278,19 +8270,11 @@ function () {
       this.scene.add(this.spotLight); //创建地图区域添加到 mapObject
       this.mapObject = new Group();
       this.initControls();
-      this.initDebug();
-      console.time('initArea'); //初始化区域
-      this.initArea();
-      console.timeEnd('initArea');
-      console.time('initMark'); //初始化标注点
-      this.initMark();
-      console.timeEnd('initMark');
-      console.time('initLine'); //初始化线条
-      this.initLine();
-      console.timeEnd('initLine');
-      console.time('inintDataRange'); //初始化数据等级范围
-      this.inintDataRange();
-      console.timeEnd('inintDataRange'); //根据数据中心位置偏移
+      this.initDebug(); //初始化区域
+      this.initArea(); //初始化标注点
+      this.initMark(); //初始化线条
+      this.initLine(); //初始化数据等级范围
+      this.inintDataRange(); //根据数据中心位置偏移
       if (this.geoData.cp) {
         this.mapObject.position.set(-this.geoData.cp[0], -this.geoData.cp[1], 0);
       }
@@ -8566,7 +8550,7 @@ function () {
     key: "printCameraPosition",
     value: function printCameraPosition() {
       var v3 = this.camera.position;
-      this.infoPlane.textContent = '相机位置 {x:' + v3.x.toFixed(4) + ",y:" + v3.y.toFixed(4) + ",z:" + v3.z.toFixed(4) + '}';
+      this.infoPlane.textContent = '相机位置 {x:' + v3.x.toFixed(4) + ',y:' + v3.y.toFixed(4) + ',z:' + v3.z.toFixed(4) + '}';
     }
     /**
      * 删除区域
@@ -8992,9 +8976,122 @@ function BakcToTop() {
   };
 }
 
+/**
+ * 相机路径跟踪对象
+ * 注意：如果场景使用了控制器，请在control.update 之后调用，update()
+ * @example
+ *  var cpf=new CameraPathFollow({camera,scene,speed,debug...})
+ *  cpf.start({[[0,0,0],[10,0,0]],speed:0.003,onCompleted:()=>{}})
+ */
+var CameraPathFollow =
+/*#__PURE__*/
+function () {
+  function CameraPathFollow(opt) {
+    _classCallCheck(this, CameraPathFollow);
+    if (!opt.camera instanceof Camera) {
+      console.warn('new CameraPathFollow "THREE.Camera" initialization required.');
+      return false;
+    } //默认设置
+    this._opt = {
+      camera: null,
+      scene: null,
+      speed: 0.0005,
+      points: null,
+      //[[31,35,40],[38,8,30],[-38,49,20],[0,0,100],[0,30,20],[0,80,10]],
+      lookAt: null,
+      //设置固定焦点 如:[0,0,0],默认自动跟随path运动前方
+      _pct: 0,
+      //导航起始位置 0-1
+      debug: false,
+      isStart: true,
+      controls: null,
+      //场景控制器对象
+      repeat: false,
+      _isReady: false
+    };
+    Object.assign(this, this._opt, opt);
+  }
+  _createClass(CameraPathFollow, [{
+    key: "start",
+    value: function start(opt) {
+      if (!opt.points) {
+        console.warn('CameraPathFollow.start(opt.points) "points" is not Array.');
+        return;
+      }
+      this._pct = 0;
+      Object.assign(this, opt);
+      this.setPath(this.points);
+      this.isStart = true;
+    }
+  }, {
+    key: "stop",
+    value: function stop() {
+      this.isStart = false;
+    }
+    /**
+     * 设置导航路径,把路径点转化为3d圆滑线条
+     * @param {*} points
+     * @example
+     * var path=[[0,0,0],[100,0,0]..]
+     * @example
+     * var path=[new THREE.Vector3(0, 0, 0),new THREE.Vector3(100, 0, 0),..]
+     */
+  }, {
+    key: "setPath",
+    value: function setPath(points) {
+      if (!Array.isArray(points)) {
+        console.warn('CameraPathFollow.setPath(points) "points" is not Array.');
+        return;
+      } // 兼容path数组和Vector3数组
+      if (!(points[0] instanceof Vector3)) {
+        for (var i = 0; i < points.length; i++) {
+          var x = points[i][0];
+          var y = points[i][1];
+          var z = points[i][2];
+          points[i] = new Vector3(x, y, z);
+        }
+      }
+      this.path = new CatmullRomCurve3(points);
+      if (this.scene && this.debug) {
+        this.debugeTube && scene.remove(this.debugeTube);
+        var material = new MeshBasicMaterial({
+          color: 0xffffff,
+          wireframe: true
+        });
+        var geometry = new TubeGeometry(this.path, this.path.length * 3, 2, 3, true);
+        this.debugeTube = new Mesh(geometry, material);
+        scene.add(this.debugeTube);
+      }
+      this._isReady = true;
+    } //更新
+  }, {
+    key: "update",
+    value: function update() {
+      if (!this.isStart || !this._isReady) return;
+      this._pct += this.speed;
+      if (!this.repeat && this._pct > 1) {
+        this.isStart = false; //完成执行回调
+        this.onCompleted && this.onCompleted();
+        return;
+      }
+      var pt1 = this.path.getPointAt(this._pct % 1);
+      var pt2 = this.path.getPointAt((this._pct + 0.01) % 1);
+      this.camera.position.set(pt1.x, pt1.y, pt1.z);
+      if (this.lookAt) {
+        this.camera.lookAt(this.lookAt[0], this.lookAt[1], this.lookAt[2]);
+      } else {
+        this.camera.lookAt(pt2.x, pt2.y, pt2.z);
+      }
+      this.onUpdate && this.onUpdate();
+    }
+  }]);
+  return CameraPathFollow;
+}();
+
 var vis = {
   Map3D: Map3D,
-  BackToTop: BakcToTop
+  BackToTop: BakcToTop,
+  CameraPathFollow: CameraPathFollow
 };
 
 /**
@@ -9179,7 +9276,7 @@ Stats.Panel = function (name, fg, bg) {
       context.fillRect(GRAPH_X + GRAPH_WIDTH - PR, GRAPH_Y, PR, round((1 - value / maxValue) * GRAPH_HEIGHT));
     }
   };
-}; // module.exports = Stats
+};
 
 var dev = {
   Stats: Stats
@@ -9272,10 +9369,10 @@ function Synthesis() {
 }
 
 var annyang = createCommonjsModule(function (module) {
-  var _typeof$$1 = "function" == typeof Symbol && "symbol" == _typeof(Symbol.iterator) ? function (e) {
+  var _typeof$$1 = 'function' == typeof Symbol && 'symbol' == _typeof(Symbol.iterator) ? function (e) {
     return _typeof(e);
   } : function (e) {
-    return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol" : _typeof(e);
+    return e && 'function' == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? 'symbol' : _typeof(e);
   }; //! annyang
   //! version : 2.6.1
   //! author  : Tal Ater @TalAter
@@ -9287,8 +9384,8 @@ var annyang = createCommonjsModule(function (module) {
   //! license : MIT
   //! https://www.TalAter.com/annyang/
   !function (e, n) {
-    "object" === (_typeof$$1(module)) && module.exports ? module.exports = n(e) : e.annyang = n(e);
-  }("undefined" != typeof window ? window : void 0, function (r, i) {
+    'object' === (_typeof$$1(module)) && module.exports ? module.exports = n(e) : e.annyang = n(e);
+  }('undefined' != typeof window ? window : void 0, function (r, i) {
     var t,
         o = r.SpeechRecognition || r.webkitSpeechRecognition || r.mozSpeechRecognition || r.msSpeechRecognition || r.oSpeechRecognition;
     if (!o) return null;
@@ -9310,7 +9407,7 @@ var annyang = createCommonjsModule(function (module) {
         f = 0,
         l = 0,
         d = !1,
-        p = "font-weight: bold; color: #00f;",
+        p = 'font-weight: bold; color: #00f;',
         g = !1,
         m = !1,
         h = /\s*\((.*?)\)\s*/g,
@@ -9330,7 +9427,7 @@ var annyang = createCommonjsModule(function (module) {
       return a !== i;
     },
         k = function k(e, n) {
-      -1 !== e.indexOf("%c") || n ? console.log(e, n || p) : console.log(e);
+      -1 !== e.indexOf('%c') || n ? console.log(e, n || p) : console.log(e);
     },
         x = function x() {
       e() || t.init({}, !1);
@@ -9340,19 +9437,19 @@ var annyang = createCommonjsModule(function (module) {
         command: e,
         callback: n,
         originalPhrase: t
-      }), d && k("Command successfully loaded: %c" + t, p);
+      }), d && k('Command successfully loaded: %c' + t, p);
     },
         P = function P(e) {
       var n;
       S(u.result, e);
       for (var t = 0; t < e.length; t++) {
-        n = e[t].trim(), d && k("Speech recognized: %c" + n, p);
+        n = e[t].trim(), d && k('Speech recognized: %c' + n, p);
         for (var o = 0, r = s.length; o < r; o++) {
           var i = s[o],
               a = i.command.exec(n);
           if (a) {
             var c = a.slice(1);
-            return d && (k("command matched: %c" + i.originalPhrase, p), c.length && k("with parameters", c)), i.callback.apply(this, c), void S(u.resultMatch, n, i.originalPhrase, e);
+            return d && (k('command matched: %c' + i.originalPhrase, p), c.length && k('with parameters', c)), i.callback.apply(this, c), void S(u.resultMatch, n, i.originalPhrase, e);
           }
         }
       }
@@ -9361,23 +9458,23 @@ var annyang = createCommonjsModule(function (module) {
     return t = {
       init: function init(e) {
         var n = !(1 < arguments.length && arguments[1] !== i) || arguments[1];
-        a && a.abort && a.abort(), (a = new o()).maxAlternatives = 5, a.continuous = "http:" === r.location.protocol, a.lang = "en-US", a.onstart = function () {
+        a && a.abort && a.abort(), (a = new o()).maxAlternatives = 5, a.continuous = 'http:' === r.location.protocol, a.lang = 'en-US', a.onstart = function () {
           m = !0, S(u.start);
         }, a.onsoundstart = function () {
           S(u.soundstart);
         }, a.onerror = function (e) {
           switch (S(u.error, e), e.error) {
-            case "network":
+            case 'network':
               S(u.errorNetwork, e);
               break;
-            case "not-allowed":
-            case "service-not-allowed":
+            case 'not-allowed':
+            case 'service-not-allowed':
               c = !1, new Date().getTime() - f < 200 ? S(u.errorPermissionBlocked, e) : S(u.errorPermissionDenied, e);
           }
         }, a.onend = function () {
           if (m = !1, S(u.end), c) {
             var e = new Date().getTime() - f;
-            (l += 1) % 10 == 0 && d && k("Speech Recognition is repeatedly stopping and starting. See http://is.gd/annyang_restarts for tips."), e < 1e3 ? setTimeout(function () {
+            (l += 1) % 10 == 0 && d && k('Speech Recognition is repeatedly stopping and starting. See http://is.gd/annyang_restarts for tips.'), e < 1e3 ? setTimeout(function () {
               t.start({
                 paused: g
               });
@@ -9386,7 +9483,7 @@ var annyang = createCommonjsModule(function (module) {
             });
           }
         }, a.onresult = function (e) {
-          if (g) return d && k("Speech heard, but annyang is paused"), !1;
+          if (g) return d && k('Speech heard, but annyang is paused'), !1;
           for (var n = e.results[e.resultIndex], t = [], o = 0; o < n.length; o++) {
             t[o] = n[o].transcript;
           }
@@ -9420,14 +9517,14 @@ var annyang = createCommonjsModule(function (module) {
       addCommands: function addCommands(e) {
         var n, t;
         for (var o in x(), e) {
-          if (e.hasOwnProperty(o)) if ("function" == typeof (n = r[e[o]] || e[o])) R((t = (t = o).replace(w, "\\$&").replace(h, "(?:$1)?").replace(b, function (e, n) {
-            return n ? e : "([^\\s]+)";
-          }).replace(v, "(.*?)").replace(y, "\\s*$1?\\s*"), new RegExp("^" + t + "$", "i")), n, o);else {
-            if (!("object" === (void 0 === n ? "undefined" : _typeof$$1(n)) && n.regexp instanceof RegExp)) {
-              d && k("Can not register command: %c" + o, p);
+          if (e.hasOwnProperty(o)) if ('function' == typeof (n = r[e[o]] || e[o])) R((t = (t = o).replace(w, '\\$&').replace(h, '(?:$1)?').replace(b, function (e, n) {
+            return n ? e : '([^\\s]+)';
+          }).replace(v, '(.*?)').replace(y, '\\s*$1?\\s*'), new RegExp('^' + t + '$', 'i')), n, o);else {
+            if (!('object' === (void 0 === n ? 'undefined' : _typeof$$1(n)) && n.regexp instanceof RegExp)) {
+              d && k('Can not register command: %c' + o, p);
               continue;
             }
-            R(new RegExp(n.regexp.source, "i"), n.callback, o);
+            R(new RegExp(n.regexp.source, 'i'), n.callback, o);
           }
         }
       },
@@ -9441,7 +9538,7 @@ var annyang = createCommonjsModule(function (module) {
       },
       addCallback: function addCallback(e, n, t) {
         var o = r[n] || n;
-        "function" == typeof o && u[e] !== i && u[e].push({
+        'function' == typeof o && u[e] !== i && u[e].push({
           callback: o,
           context: t || this
         });
@@ -9461,7 +9558,7 @@ var annyang = createCommonjsModule(function (module) {
         return a;
       },
       trigger: function trigger(e) {
-        t.isListening() ? (Array.isArray(e) || (e = [e]), P(e)) : d && k(m ? "Speech heard, but annyang is paused" : "Cannot trigger while annyang is aborted");
+        t.isListening() ? (Array.isArray(e) || (e = [e]), P(e)) : d && k(m ? 'Speech heard, but annyang is paused' : 'Cannot trigger while annyang is aborted');
       }
     };
   });
